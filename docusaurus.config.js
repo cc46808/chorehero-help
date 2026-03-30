@@ -2,7 +2,13 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
-process.loadEnvFile?.('.env');
+try {
+  process.loadEnvFile?.('.env');
+} catch (error) {
+  if (error?.code !== 'ENOENT') {
+    throw error;
+  }
+}
 
 const defaultDocsearchConfig = {
   appId: 'HVCACK97MH',
