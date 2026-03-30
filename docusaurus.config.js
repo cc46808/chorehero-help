@@ -2,13 +2,25 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
-const algoliaConfig = {
-  appId: process.env.DOCSEARCH_APP_ID,
-  apiKey: process.env.DOCSEARCH_API_KEY,
-  indexName: process.env.DOCSEARCH_INDEX_NAME,
+process.loadEnvFile?.('.env');
+
+const defaultDocsearchConfig = {
+  appId: 'HVCACK97MH',
+  apiKey: 'b79c2f7cdecacea1edc9696d03e1c07a',
+  indexName: 'ChoreHero',
+  assistantId: 'tWomB3HjvuYi',
 };
 
-const hasAlgolia = Object.values(algoliaConfig).every(Boolean);
+const docsearchConfig = {
+  appId: process.env.DOCSEARCH_APP_ID ?? defaultDocsearchConfig.appId,
+  apiKey: process.env.DOCSEARCH_API_KEY ?? defaultDocsearchConfig.apiKey,
+  indexName: process.env.DOCSEARCH_INDEX_NAME ?? defaultDocsearchConfig.indexName,
+  assistantId:
+    process.env.DOCSEARCH_ASK_AI_ASSISTANT_ID ??
+    defaultDocsearchConfig.assistantId,
+};
+
+const hasDocsearch = Object.values(docsearchConfig).every(Boolean);
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -53,6 +65,7 @@ const config = {
       }),
     ],
   ],
+  themes: hasDocsearch ? ['@docsearch/docusaurus-adapter'] : [],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -85,7 +98,7 @@ const config = {
           {to: '/docs/troubleshooting', label: 'Troubleshooting', position: 'left'},
           {href: 'https://app.chorehero.cloud/login', label: 'Open app', position: 'right'},
           {href: 'https://chorehero.cloud', label: 'Website', position: 'right'},
-          ...(hasAlgolia ? [{type: 'search', position: 'right'}] : []),
+          ...(hasDocsearch ? [{type: 'search', position: 'right'}] : []),
         ],
       },
       footer: {
@@ -120,14 +133,18 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-      ...(hasAlgolia
+      ...(hasDocsearch
         ? {
-            algolia: {
-              appId: algoliaConfig.appId,
-              apiKey: algoliaConfig.apiKey,
-              indexName: algoliaConfig.indexName,
+            docsearch: {
+              appId: docsearchConfig.appId,
+              apiKey: docsearchConfig.apiKey,
+              indexName: docsearchConfig.indexName,
               contextualSearch: true,
               searchPagePath: 'search',
+              askAi: {
+                assistantId: docsearchConfig.assistantId,
+                suggestedQuestions: true,
+              },
             },
           }
         : {}),

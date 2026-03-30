@@ -55,13 +55,14 @@ When support copy depends on product behavior, cross-check:
 
 ## Algolia DocSearch
 
-Algolia search is enabled only when these build-time variables are present:
+Algolia search and Ask AI have safe defaults in `docusaurus.config.js`, and you can override them with these build-time variables:
 
 - `DOCSEARCH_APP_ID`
 - `DOCSEARCH_API_KEY`
 - `DOCSEARCH_INDEX_NAME`
+- `DOCSEARCH_ASK_AI_ASSISTANT_ID`
 
-If they are missing, the site still builds, but the search UI is hidden.
+This keeps the public search UI available in production while still allowing local or hosted overrides when Algolia settings change.
 
 ## PR expectations
 
