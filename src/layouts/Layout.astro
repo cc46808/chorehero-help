@@ -1,0 +1,153 @@
+---
+import '../styles/global.css';
+import DocSearch from '../components/DocSearch';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Get help with ChoreHero — setup, child access, chores, rewards, billing, and troubleshooting.',
+  ogImage = '/img/parent-dashboard.png',
+} = Astro.props;
+
+const fullTitle = title === 'Help Center'
+  ? 'ChoreHero Help Center'
+  : `${title} — ChoreHero Help`;
+
+const navLinks = [
+  { href: '/docs/getting-started', label: 'Getting started' },
+  { href: '/docs/parent-faqs', label: 'Parent FAQs' },
+  { href: '/docs/billing-subscriptions', label: 'Billing' },
+  { href: '/docs/troubleshooting', label: 'Troubleshooting' },
+];
+
+const footerCols = [
+  {
+    heading: 'Support',
+    links: [
+      { label: 'Getting started', href: '/docs/getting-started' },
+      { label: 'Parent FAQs', href: '/docs/parent-faqs' },
+      { label: 'Contact and support', href: '/docs/contact-support' },
+    ],
+  },
+  {
+    heading: 'Product',
+    links: [
+      { label: 'Open app', href: 'https://app.chorehero.cloud/login' },
+      { label: 'Marketing site', href: 'https://chorehero.cloud' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { label: 'Privacy policy', href: 'https://app.chorehero.cloud/privacy-policy' },
+      { label: 'Terms of use', href: 'https://app.chorehero.cloud/terms-of-use' },
+    ],
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/img/chorehero-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{fullTitle}</title>
+  </head>
+  <body class="font-body text-ink antialiased min-h-screen">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:rounded-full focus:shadow-soft focus:text-ink text-sm font-semibold"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-blue-950/[0.07] shadow-[0_1px_12px_rgba(37,72,140,0.06)]">
+      <div class="max-w-site mx-auto px-4 sm:px-6 h-14 flex items-center gap-3">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2.5 min-w-0 shrink-0">
+          <img src="/img/logo-wordmark.png" alt="ChoreHero" class="h-8 w-auto" loading="eager" />
+          <span class="hidden sm:flex flex-col leading-none">
+            <strong class="font-display font-bold text-[1.1rem] tracking-tight text-ink">ChoreHero</strong>
+            <span class="text-cobalt text-[0.68rem] font-bold tracking-[0.06em] mt-0.5">Help Center</span>
+          </span>
+        </a>
+
+        <!-- Nav links (desktop) -->
+        <nav class="hidden md:flex items-center gap-0.5 ml-6" aria-label="Help navigation">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class="px-3 py-1.5 text-[0.88rem] font-semibold text-ink/60 rounded-lg hover:bg-brand/[0.06] hover:text-cobalt transition-colors duration-150"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Right: search + CTA -->
+        <div class="ml-auto flex items-center gap-2.5">
+          <DocSearch client:load />
+          <a
+            href="https://app.chorehero.cloud/login"
+            class="hidden sm:flex flex-none px-4 py-2 rounded-full bg-cobalt text-white font-bold text-[0.85rem] tracking-wide shadow-[0_4px_14px_rgba(37,99,235,0.26)] hover:bg-blue-700 hover:shadow-[0_6px_20px_rgba(37,99,235,0.32)] transition-all duration-200"
+          >
+            Open app
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-blue-950/[0.07] bg-ink text-white/80">
+      <div class="max-w-site mx-auto px-4 sm:px-6 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
+          {footerCols.map(col => (
+            <div>
+              <p class="text-[0.7rem] font-black tracking-[0.18em] uppercase text-white/40 mb-3">{col.heading}</p>
+              <ul class="space-y-2">
+                {col.links.map(l => (
+                  <li>
+                    <a href={l.href} class="text-[0.9rem] text-white/60 hover:text-white transition-colors">
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div class="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <img src="/img/logo-wordmark.png" alt="ChoreHero" class="h-6 w-auto brightness-0 invert opacity-60" loading="lazy" />
+            <span class="font-display font-bold text-[0.95rem] text-white/50">ChoreHero</span>
+          </div>
+          <p class="text-[0.8rem] text-white/35">© {new Date().getFullYear()} ChoreHero. All rights reserved.</p>
+          <a href="https://chorehero.cloud" class="text-[0.85rem] text-white/40 hover:text-white/70 transition-colors">chorehero.cloud</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

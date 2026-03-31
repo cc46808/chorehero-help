@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DocSearch from '../components/DocSearch';
+
+const quickLinks = [
+  {
+    title: 'Get started',
+    body: 'Set up your household, learn the core parent flow, and understand where kids sign in.',
+    href: '/docs/getting-started',
+  },
+  {
+    title: 'Parent FAQs',
+    body: 'Answers to the most common questions about child access, rewards, routines, and daily use.',
+    href: '/docs/parent-faqs',
+  },
+  {
+    title: 'Billing and subscriptions',
+    body: 'Understand Free, Plus, and Pro, where billing lives, and what happens during plan changes.',
+    href: '/docs/billing-subscriptions',
+  },
+  {
+    title: 'Troubleshooting',
+    body: 'Start here for login issues, missing chores, access changes, push problems, and billing confusion.',
+    href: '/docs/troubleshooting',
+  },
+];
+
+const supportLanes = [
+  'Parent setup, onboarding, and account basics',
+  'Child login, quick-login links, and trusted-device questions',
+  'Recurring chores, approvals, proof, rewards, and dashboard workflows',
+  'Billing, plan access, and Stripe-backed subscription questions',
+];
+---
+
+<Layout title="Help Center">
+  <div class="grid gap-14 pb-16 pt-2">
+
+    <!-- Hero -->
+    <section class="pt-8">
+      <div class="max-w-site mx-auto px-4 sm:px-6">
+        <div
+          class="grid gap-8 md:grid-cols-[1.15fr_0.85fr] items-center
+            section-card px-6 sm:px-10 py-10 sm:py-14
+            bg-gradient-to-br from-white/95 to-paper/80"
+        >
+          <!-- Copy -->
+          <div class="grid gap-5">
+            <span class="eyebrow">ChoreHero support</span>
+            <h1 class="font-display font-bold text-[clamp(2.4rem,5.5vw,3.2rem)] leading-[1.04] text-ink m-0">
+              Help that keeps family routines moving.
+            </h1>
+            <p class="text-ink/70 text-[1.05rem] leading-[1.75] m-0 max-w-[40rem]">
+              Find the fastest path for setup, child access, chores, rewards,
+              billing, and day-to-day troubleshooting.
+            </p>
+
+            <!-- Search -->
+            <div class="grid gap-2">
+              <p class="text-ink/55 text-[0.83rem] leading-relaxed m-0">
+                Search the help center or ask AI first for fast answers about login, chores,
+                billing, and family setup.
+              </p>
+              <div class="help-hero-search">
+                <DocSearch client:load />
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap gap-3 mt-1">
+              <a href="/docs/getting-started" class="btn-primary">Start with setup</a>
+              <a href="/docs/parent-faqs" class="btn-secondary">Browse parent FAQs</a>
+            </div>
+          </div>
+
+          <!-- Visual -->
+          <div class="flex justify-center">
+            <div class="section-card p-4 max-w-sm w-full grid gap-3">
+              <img
+                src="/img/parent-dashboard.png"
+                alt="ChoreHero parent dashboard preview"
+                class="w-full rounded-xl"
+                loading="eager"
+              />
+              <div class="px-1 grid gap-0.5">
+                <strong class="text-[0.95rem] text-ink font-semibold">Parent dashboard</strong>
+                <span class="text-[0.83rem] text-ink/60">One place for chores, approvals, rewards, and family settings.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick links -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 w-full">
+      <div class="grid gap-2 mb-6">
+        <h2 class="font-display font-bold text-[clamp(1.7rem,3vw,2rem)] text-ink m-0">
+          Start with the topic that matches your question
+        </h2>
+        <p class="text-ink/65 leading-[1.7] m-0">
+          The help center is organized around parent-facing product flows.
+        </p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {quickLinks.map(item => (
+          <a
+            href={item.href}
+            class="section-card p-5 grid gap-2 hover:-translate-y-0.5 hover:border-sky/30 transition-all duration-150 no-underline"
+          >
+            <h3 class="font-display font-semibold text-[1rem] text-ink m-0">{item.title}</h3>
+            <p class="text-[0.88rem] text-ink/65 leading-[1.65] m-0">{item.body}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Two-up info panels -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 w-full">
+      <div class="grid gap-5 md:grid-cols-2">
+        <div class="section-card p-8 grid gap-4">
+          <h2 class="font-display font-bold text-[1.5rem] text-ink m-0">What this help center covers</h2>
+          <ul class="grid gap-2 m-0 pl-0 list-none">
+            {supportLanes.map(lane => (
+              <li class="flex items-start gap-2 text-[0.92rem] text-ink/70 leading-[1.6]">
+                <span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-cobalt shrink-0"></span>
+                {lane}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="section-card p-8 grid gap-4">
+          <h2 class="font-display font-bold text-[1.5rem] text-ink m-0">When a change needs docs review</h2>
+          <p class="text-[0.92rem] text-ink/70 leading-[1.7] m-0">
+            User-facing app, billing, onboarding, child access, and support-surface changes are
+            expected to update <code class="text-brand bg-brand/10 px-1.5 py-0.5 rounded text-[0.88em]">help/</code> or explicitly declare that no update is needed in the pull request.
+          </p>
+          <a href="/docs/authoring-guide" class="text-[0.9rem] text-cobalt font-semibold hover:text-brand transition-colors">
+            Read the docs authoring guide →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support strip -->
+    <section class="max-w-site mx-auto px-4 sm:px-6 w-full">
+      <div class="section-card px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="grid gap-1.5">
+          <h2 class="font-display font-bold text-[1.4rem] text-ink m-0">Need the product right now?</h2>
+          <p class="text-ink/65 text-[0.92rem] leading-[1.65] m-0">
+            Open the app for account access, billing settings, and your current household data.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="https://app.chorehero.cloud/login" class="btn-primary">Open ChoreHero</a>
+          <a href="https://chorehero.cloud" class="btn-secondary">Visit chorehero.cloud</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  .help-hero-search :global(.DocSearch-Button) {
+    border-radius: 999px;
+    border: 1px solid rgba(34, 68, 131, 0.14);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 14px rgba(37, 72, 140, 0.08);
+    font-family: inherit;
+    padding: 0.55rem 1rem;
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .help-hero-search :global(.DocSearch-Button:hover) {
+    border-color: rgba(49, 83, 164, 0.3);
+    box-shadow: 0 6px 20px rgba(37, 72, 140, 0.12);
+  }
+
+  .help-hero-search :global(.DocSearch-Button-Placeholder) {
+    font-size: 0.9rem;
+    color: rgba(33, 48, 79, 0.55);
+  }
+</style>
