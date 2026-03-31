@@ -53,16 +53,17 @@ When support copy depends on product behavior, cross-check:
 - relevant flows in `src/`
 - billing logic in `src/functions/_shared/billing.js`
 
-## Algolia DocSearch
+## Algolia search and AI assistant
 
-Algolia search and Ask AI have safe defaults in `docusaurus.config.js`, and you can override them with these build-time variables:
+Algolia search and the dedicated `/ask-ai` assistant page have safe defaults in `docusaurus.config.js`, and you can override them with these build-time variables:
 
 - `DOCSEARCH_APP_ID`
 - `DOCSEARCH_API_KEY`
 - `DOCSEARCH_INDEX_NAME`
-- `DOCSEARCH_ASK_AI_ASSISTANT_ID`
+- `DOCSEARCH_AGENT_ID`
+- `DOCSEARCH_AGENT_URL`
 
-This keeps the public search UI available in production while still allowing local or hosted overrides when Algolia settings change.
+This keeps the public search UI and AI assistant available in production while still allowing local or hosted overrides when Algolia settings change.
 
 ## PR expectations
 

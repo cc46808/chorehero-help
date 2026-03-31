@@ -27,3 +27,12 @@ The primary deployment model is a Git-connected Cloudflare Pages project with:
 - production branch: `main`
 
 See [`../docs/SUPPORT_SITE_SETUP.md`](../docs/SUPPORT_SITE_SETUP.md) for the exact dashboard settings, required GitHub setup, Algolia DocSearch variables, and the optional secondary Wrangler fallback.
+
+## Algolia AI assistant
+
+The help center supports two Algolia surfaces:
+
+- navbar DocSearch for standard article search
+- `/ask-ai` for the Agent Studio chat assistant
+
+Use `DOCSEARCH_APP_ID`, `DOCSEARCH_API_KEY`, and `DOCSEARCH_INDEX_NAME` for search. Add `DOCSEARCH_AGENT_ID` when you want the dedicated AI assistant page enabled. `DOCSEARCH_AGENT_URL` is optional for advanced transport overrides.
