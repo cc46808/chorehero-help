@@ -1,0 +1,111 @@
+.searchShell {
+  position: relative;
+  width: min(100%, 42rem);
+}
+
+.searchShell :global(.DocSearch-SearchBar) {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.searchShell :global(.DocSearch-Button) {
+  flex: 1 1 24rem;
+  width: 100%;
+  margin: 0;
+  min-width: 0;
+  height: 3.55rem;
+  border: 1px solid rgba(34, 68, 131, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 16px 34px rgba(37, 72, 140, 0.08);
+}
+
+.searchShell :global(.DocSearch-Button:hover),
+.searchShell :global(.DocSearch-Button:focus) {
+  border-color: rgba(42, 157, 244, 0.34);
+  box-shadow: 0 18px 42px rgba(37, 72, 140, 0.12);
+}
+
+.searchShell :global(.DocSearch-Search-Icon) {
+  color: #3153a4;
+}
+
+.searchShell :global(.DocSearch-Button-Placeholder) {
+  color: rgba(33, 48, 79, 0.72);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.searchShell :global(.DocSearch-Button-Keys) {
+  min-width: auto;
+}
+
+.searchShell :global(.DocSearch-SidepanelButton.inline) {
+  flex: 0 0 auto;
+  height: 3.55rem;
+  padding: 0 1.15rem;
+  border: 1px solid rgba(34, 68, 131, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 16px 34px rgba(37, 72, 140, 0.08);
+  color: #21304f;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.searchShell :global(.DocSearch-SidepanelButton.inline:hover),
+.searchShell :global(.DocSearch-SidepanelButton.inline:focus) {
+  border-color: rgba(42, 157, 244, 0.34);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18px 42px rgba(37, 72, 140, 0.12);
+}
+
+.searchShell :global(.DocSearch-SidepanelButton.inline svg) {
+  color: #3153a4;
+}
+
+.searchShell :global(.DocSearch-SidepanelButton.inline)::after {
+  content: 'Ask AI';
+  margin-left: 0.45rem;
+}
+
+[data-theme='dark'] .searchShell :global(.DocSearch-Button) {
+  border-color: rgba(125, 161, 255, 0.24);
+  background: rgba(23, 34, 58, 0.94);
+  box-shadow: 0 18px 40px rgba(4, 10, 22, 0.28);
+}
+
+[data-theme='dark'] .searchShell :global(.DocSearch-Button:hover),
+[data-theme='dark'] .searchShell :global(.DocSearch-Button:focus) {
+  border-color: rgba(125, 161, 255, 0.4);
+}
+
+[data-theme='dark'] .searchShell :global(.DocSearch-Button-Placeholder) {
+  color: rgba(246, 248, 255, 0.8);
+}
+
+[data-theme='dark'] .searchShell :global(.DocSearch-SidepanelButton.inline) {
+  border-color: rgba(125, 161, 255, 0.24);
+  background: rgba(23, 34, 58, 0.94);
+  box-shadow: 0 18px 40px rgba(4, 10, 22, 0.28);
+  color: #f6f8ff;
+}
+
+[data-theme='dark'] .searchShell :global(.DocSearch-SidepanelButton.inline:hover),
+[data-theme='dark'] .searchShell :global(.DocSearch-SidepanelButton.inline:focus) {
+  border-color: rgba(125, 161, 255, 0.4);
+  background: rgba(29, 43, 72, 0.98);
+}
+
+@media screen and (max-width: 640px) {
+  .searchShell :global(.DocSearch-SearchBar) {
+    flex-direction: column;
+  }
+
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    justify-content: center;
+    width: 100%;
+  }
+}

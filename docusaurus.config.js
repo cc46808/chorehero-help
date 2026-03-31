@@ -24,6 +24,7 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  plugins: ['@docsearch/docusaurus-adapter'],
   presets: [
     [
       'classic',
@@ -46,7 +47,7 @@ const config = {
     ],
   ],
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    /** @type {import('@docsearch/docusaurus-adapter').UserThemeConfig & import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/parent-dashboard.png',
       metadata: [
@@ -62,7 +63,23 @@ const config = {
         },
       ],
       colorMode: {
-        respectPrefersColorScheme: true,
+        defaultMode: 'light',
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
+      },
+      docsearch: {
+        appId: 'HVCACK97MH',
+        apiKey: 'b79c2f7cdecacea1edc9696d03e1c07a',
+        indexName: 'ChoreHero',
+        contextualSearch: true,
+        askAi: {
+          assistantId: 'tWomB3HjvuYi',
+          suggestedQuestions: true,
+          sidePanel: {
+            variant: 'inline',
+            pushSelector: '#docsearch-sidepanel-offset-anchor',
+          },
+        },
       },
       navbar: {
         title: 'Help Center',
