@@ -1,0 +1,86 @@
+.hybridSearch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: stretch;
+  width: min(100%, 42rem);
+}
+
+.searchButton {
+  flex: 1 1 24rem;
+}
+
+.askAiButton {
+  flex: 0 0 auto;
+}
+
+.searchFallback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex: 1 1 24rem;
+  min-height: 3.35rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(34, 68, 131, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 28px rgba(37, 72, 140, 0.08);
+  color: rgba(33, 48, 79, 0.78);
+}
+
+.searchFallbackLabel {
+  font-weight: 500;
+}
+
+.searchFallbackKeys {
+  padding: 0.15rem 0.45rem;
+  border: 1px solid rgba(34, 68, 131, 0.14);
+  border-radius: 0.6rem;
+  background: rgba(248, 246, 234, 0.92);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.askAiFallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.35rem;
+  padding: 0.8rem 1.05rem;
+  border: 1px solid rgba(34, 68, 131, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 28px rgba(37, 72, 140, 0.08);
+  color: rgba(33, 48, 79, 0.86);
+  font-weight: 600;
+}
+
+.hybridSearch :global(.DocSearch-Button) {
+  width: 100%;
+  min-height: 3.35rem;
+  margin: 0;
+  border: 1px solid rgba(34, 68, 131, 0.16);
+  border-radius: 1rem;
+  box-shadow: 0 14px 28px rgba(37, 72, 140, 0.08);
+}
+
+.hybridSearch :global(.DocSearch-SidepanelButton) {
+  min-height: 3.35rem;
+  border-radius: 1rem;
+  box-shadow: 0 14px 28px rgba(37, 72, 140, 0.08);
+}
+
+@media screen and (max-width: 640px) {
+  .searchButton,
+  .askAiButton,
+  .searchFallback,
+  .askAiFallback {
+    flex-basis: 100%;
+  }
+
+  .hybridSearch :global(.DocSearch-SidepanelButton) {
+    width: 100%;
+    justify-content: center;
+  }
+}

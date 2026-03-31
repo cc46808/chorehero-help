@@ -1,6 +1,7 @@
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import HeroHybridSearch from '@site/src/components/HeroHybridSearch';
 
 import styles from './index.module.css';
 
@@ -51,6 +52,7 @@ export default function Home() {
                 Find the fastest path for setup, child access, chores, rewards, billing, and
                 day-to-day troubleshooting without digging through internal docs.
               </p>
+              <HeroHybridSearch />
               <div className={styles.heroActions}>
                 <Link className="button button--primary button--lg" to="/docs/getting-started">
                   Start with setup
@@ -59,6 +61,10 @@ export default function Home() {
                   Browse parent FAQs
                 </Link>
               </div>
+              <p className={styles.heroHint}>
+                Search the help center or ask AI for fast answers about login, chores, billing,
+                and family setup.
+              </p>
             </div>
             <div className={styles.heroVisual}>
               <div className={styles.previewCard}>

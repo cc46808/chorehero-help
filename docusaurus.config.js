@@ -27,6 +27,17 @@ const docsearchConfig = {
 };
 
 const hasDocsearch = Object.values(docsearchConfig).every(Boolean);
+const docsearchRuntimeConfig = hasDocsearch
+  ? {
+      appId: docsearchConfig.appId,
+      apiKey: docsearchConfig.apiKey,
+      indexName: docsearchConfig.indexName,
+      askAi: {
+        assistantId: docsearchConfig.assistantId,
+        suggestedQuestions: true,
+      },
+    }
+  : null;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -45,6 +56,9 @@ const config = {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
+  },
+  customFields: {
+    docsearch: docsearchRuntimeConfig,
   },
   i18n: {
     defaultLocale: 'en',
@@ -71,7 +85,6 @@ const config = {
       }),
     ],
   ],
-  themes: hasDocsearch ? ['@docsearch/docusaurus-adapter'] : [],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -104,7 +117,6 @@ const config = {
           {to: '/docs/troubleshooting', label: 'Troubleshooting', position: 'left'},
           {href: 'https://app.chorehero.cloud/login', label: 'Open app', position: 'right'},
           {href: 'https://chorehero.cloud', label: 'Website', position: 'right'},
-          ...(hasDocsearch ? [{type: 'search', position: 'right'}] : []),
         ],
       },
       footer: {
@@ -139,22 +151,6 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-      ...(hasDocsearch
-        ? {
-            docsearch: {
-              appId: docsearchConfig.appId,
-              apiKey: docsearchConfig.apiKey,
-              indexName: docsearchConfig.indexName,
-              contextualSearch: true,
-              searchPagePath: 'search',
-              askAi: {
-                assistantId: docsearchConfig.assistantId,
-                suggestedQuestions: true,
-                sidePanel: true,
-              },
-            },
-          }
-        : {}),
     }),
 };
 
