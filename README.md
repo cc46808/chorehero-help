@@ -30,9 +30,6 @@ See [`../docs/SUPPORT_SITE_SETUP.md`](../docs/SUPPORT_SITE_SETUP.md) for the exa
 
 ## Algolia AI assistant
 
-The help center supports two Algolia surfaces:
+The help center uses the DocSearch adapter for both standard search and Ask AI.
 
-- navbar DocSearch for standard article search
-- `/ask-ai` for the Agent Studio chat assistant
-
-Use `DOCSEARCH_APP_ID`, `DOCSEARCH_API_KEY`, and `DOCSEARCH_INDEX_NAME` for search. Add `DOCSEARCH_AGENT_ID` when you want the dedicated AI assistant page enabled. `DOCSEARCH_AGENT_URL` is optional for advanced transport overrides.
+Use `DOCSEARCH_APP_ID`, `DOCSEARCH_API_KEY`, and `DOCSEARCH_INDEX_NAME` for search, and `DOCSEARCH_ASK_AI_ASSISTANT_ID` for the hybrid Ask AI experience that appears with the search UI.
