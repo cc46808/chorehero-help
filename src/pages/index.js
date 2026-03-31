@@ -52,19 +52,25 @@ export default function Home() {
                 Find the fastest path for setup, child access, chores, rewards, billing, and
                 day-to-day troubleshooting without digging through internal docs.
               </p>
-              <HeroHybridSearch />
+              <div className={styles.heroSearchGroup}>
+                <p className={styles.heroHint}>
+                  Search the help center or ask AI first for fast answers about login, chores,
+                  billing, and family setup.
+                </p>
+                <HeroHybridSearch />
+              </div>
               <div className={styles.heroActions}>
-                <Link className="button button--primary button--lg" to="/docs/getting-started">
+                <Link
+                  className={`button button--primary button--lg ${styles.heroPrimaryAction}`}
+                  to="/docs/getting-started">
                   Start with setup
                 </Link>
-                <Link className="button button--secondary button--lg" to="/docs/parent-faqs">
+                <Link
+                  className={`button button--secondary button--lg ${styles.heroSecondaryAction}`}
+                  to="/docs/parent-faqs">
                   Browse parent FAQs
                 </Link>
               </div>
-              <p className={styles.heroHint}>
-                Search the help center or ask AI for fast answers about login, chores, billing,
-                and family setup.
-              </p>
             </div>
             <div className={styles.heroVisual}>
               <div className={styles.previewCard}>

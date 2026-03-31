@@ -235,9 +235,40 @@ body::before {
     --ifm-navbar-height: 4.35rem;
   }
 
+  .navbar-sidebar {
+    background: rgba(255, 253, 245, 0.985);
+    border-right: 1px solid rgba(34, 68, 131, 0.08);
+    box-shadow: 14px 0 36px rgba(37, 72, 140, 0.08);
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
   .navbar__inner {
     min-height: var(--ifm-navbar-height);
-    padding: 0 0.75rem;
+    padding: 0 0.85rem;
+  }
+
+  .navbar__brand {
+    gap: 0.35rem;
+    margin-right: 0.75rem;
+  }
+
+  .navbar__title {
+    font-size: 1rem;
+  }
+
+  .navbar__items--left,
+  .navbar__items--right {
+    gap: 0.25rem;
+  }
+
+  .navbar__link {
+    min-height: 2.55rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .navbar__toggle {
+    margin-right: 0.1rem;
   }
 
   .navbar .DocSearch-SidepanelButton.inline {
@@ -245,6 +276,174 @@ body::before {
     min-width: 2rem;
     padding: 0;
     font-size: 0;
+  }
+
+  .navbar-sidebar__brand {
+    padding: 0.85rem 1rem;
+    box-shadow: none;
+  }
+
+  [data-theme='dark'] .navbar-sidebar {
+    background: rgba(18, 26, 44, 0.985);
+    border-right-color: rgba(125, 161, 255, 0.12);
+    box-shadow: 14px 0 36px rgba(4, 10, 22, 0.24);
+  }
+
+  .navbar-sidebar__items {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+    min-height: calc(100dvh - var(--ifm-navbar-height));
+    overflow: hidden;
+    padding: 0.35rem 0.35rem 0.9rem;
+  }
+
+  .navbar-sidebar__item.menu {
+    flex: 0 0 100%;
+    min-width: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar-sidebar .menu {
+    padding-bottom: 0.6rem;
+  }
+
+  .navbar-sidebar .menu__link,
+  .navbar-sidebar .menu__list-item-collapsible,
+  .navbar-sidebar__back {
+    border-radius: 0.85rem;
+    min-height: 2.65rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .theme-doc-markdown {
+    line-height: 1.72;
+    padding-inline: 0.1rem;
+  }
+
+  .theme-doc-markdown h1 {
+    font-size: clamp(1.82rem, 6.6vw, 2.25rem);
+    margin-bottom: 0.85rem;
+  }
+
+  .theme-doc-markdown h2 {
+    font-size: clamp(1.42rem, 5.2vw, 1.75rem);
+    margin-top: 1.9rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .theme-doc-markdown h3 {
+    font-size: clamp(1.12rem, 4.2vw, 1.3rem);
+    margin-top: 1.4rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .theme-doc-markdown p,
+  .theme-doc-markdown ul,
+  .theme-doc-markdown ol,
+  .theme-doc-markdown blockquote {
+    margin-bottom: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  :root {
+    --ifm-navbar-height: 4.05rem;
+  }
+
+  .navbar-sidebar {
+    background: rgba(255, 253, 245, 0.992);
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  [data-theme='dark'] .navbar-sidebar {
+    background: rgba(18, 26, 44, 0.992);
+  }
+
+  .navbar__inner {
+    padding: 0 0.7rem;
+  }
+
+  .navbar__brand {
+    gap: 0.3rem;
+    margin-right: 0.5rem;
+  }
+
+  .navbar__title {
+    font-size: 0.95rem;
+  }
+
+  .navbar__link {
+    min-height: 2.4rem;
+    padding: 0.4rem 0.55rem;
+  }
+
+  .navbar .DocSearch-Button,
+  .navbar .DocSearch-SidepanelButton.inline {
+    width: 1.9rem;
+    min-width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .navbar-sidebar__brand {
+    padding: 0.75rem 0.9rem;
+  }
+
+  .navbar-sidebar__items {
+    min-height: calc(100dvh - var(--ifm-navbar-height));
+    padding: 0.25rem 0.3rem 0.8rem;
+  }
+
+  .navbar-sidebar .menu__link,
+  .navbar-sidebar .menu__list-item-collapsible,
+  .navbar-sidebar__back {
+    min-height: 2.5rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .theme-doc-markdown {
+    line-height: 1.68;
+    padding-inline: 0.2rem;
+  }
+
+  .theme-doc-markdown h1 {
+    font-size: clamp(1.72rem, 7.5vw, 2rem);
+  }
+
+  .theme-doc-markdown h2 {
+    font-size: clamp(1.34rem, 6vw, 1.58rem);
+  }
+
+  .theme-doc-markdown h3 {
+    font-size: clamp(1.06rem, 5vw, 1.2rem);
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .navbar__inner {
+    padding: 0 0.65rem;
+  }
+
+  .navbar__brand {
+    margin-right: 0.4rem;
+  }
+
+  .navbar__title {
+    font-size: 0.91rem;
+  }
+
+  .theme-doc-markdown {
+    padding-inline: 0.3rem;
+  }
+
+  .theme-doc-markdown h1 {
+    font-size: clamp(1.58rem, 8vw, 1.82rem);
+  }
+
+  .theme-doc-markdown h2 {
+    font-size: clamp(1.26rem, 6.6vw, 1.45rem);
   }
 }
 

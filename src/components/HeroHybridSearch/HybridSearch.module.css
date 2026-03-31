@@ -11,7 +11,8 @@
 }
 
 .searchShell :global(.DocSearch-Button) {
-  flex: 1 1 24rem;
+  flex: 1 1 22rem;
+  box-sizing: border-box;
   width: 100%;
   margin: 0;
   min-width: 0;
@@ -20,6 +21,14 @@
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 16px 34px rgba(37, 72, 140, 0.08);
+}
+
+.searchShell :global(.DocSearch-Button-Container) {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .searchShell :global(.DocSearch-Button:hover),
@@ -44,7 +53,9 @@
 
 .searchShell :global(.DocSearch-SidepanelButton.inline) {
   flex: 0 0 auto;
+  box-sizing: border-box;
   height: 3.55rem;
+  max-width: 100%;
   padding: 0 1.15rem;
   border: 1px solid rgba(34, 68, 131, 0.16);
   border-radius: 1rem;
@@ -99,13 +110,73 @@
   background: rgba(29, 43, 72, 0.98);
 }
 
+@media screen and (max-width: 996px) {
+  .searchShell :global(.DocSearch-SearchBar) {
+    gap: 0.65rem;
+  }
+
+  .searchShell :global(.DocSearch-Button),
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    height: 3.35rem;
+  }
+
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    padding: 0 1rem;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .searchShell :global(.DocSearch-SearchBar) {
     flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .searchShell :global(.DocSearch-Button-Placeholder) {
+    display: block;
+  }
+
+  .searchShell :global(.DocSearch-Button) {
+    flex: 0 0 auto;
+  }
+
+  .searchShell :global(.DocSearch-Button),
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    height: 3.15rem;
+    border-radius: 0.9rem;
+    box-shadow: 0 12px 24px rgba(37, 72, 140, 0.08);
+  }
+
+  .searchShell :global(.DocSearch-Button-Placeholder),
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    font-size: 0.95rem;
+  }
+
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    padding: 0 0.95rem;
   }
 
   .searchShell :global(.DocSearch-SidepanelButton.inline) {
     justify-content: center;
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .searchShell :global(.DocSearch-SearchBar) {
+    gap: 0.5rem;
+  }
+
+  .searchShell :global(.DocSearch-Button),
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    height: 3rem;
+  }
+
+  .searchShell :global(.DocSearch-Button-Placeholder),
+  .searchShell :global(.DocSearch-SidepanelButton.inline) {
+    font-size: 0.92rem;
+  }
+
+  .searchShell :global(.DocSearch-SidepanelButton.inline)::after {
+    margin-left: 0.35rem;
   }
 }
