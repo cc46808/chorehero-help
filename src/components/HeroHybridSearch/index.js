@@ -37,7 +37,14 @@ export default function HeroHybridSearch() {
               buttonText: 'Search',
             }}
           />
-          <SidepanelButton className={styles.askAiButton} variant="inline" />
+          <SidepanelButton
+            className={styles.askAiButton}
+            translations={{
+              buttonAriaLabel: 'Ask AI about ChoreHero help articles',
+              buttonText: 'Ask AI',
+            }}
+            variant="inline"
+          />
         </div>
       )}
     </BrowserOnly>
