@@ -21,7 +21,6 @@ function HeroHybridSearchFallback() {
 export default function HeroHybridSearch() {
   const {siteConfig} = useDocusaurusContext();
   const docsearchConfig = siteConfig.customFields?.docsearch;
-  const [portalContainer, setPortalContainer] = React.useState(null);
 
   if (!docsearchConfig) {
     return null;
@@ -30,7 +29,7 @@ export default function HeroHybridSearch() {
   return (
     <BrowserOnly fallback={<HeroHybridSearchFallback />}>
       {() => (
-        <div className={styles.hybridSearch} ref={setPortalContainer}>
+        <div className={styles.hybridSearch}>
           <DocSearchButton
             className={styles.searchButton}
             translations={{
@@ -38,7 +37,7 @@ export default function HeroHybridSearch() {
               buttonText: 'Search',
             }}
           />
-          <SidepanelButton className={styles.askAiButton} portalcontainer={portalContainer} />
+          <SidepanelButton className={styles.askAiButton} variant="inline" />
         </div>
       )}
     </BrowserOnly>
