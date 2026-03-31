@@ -9,7 +9,14 @@ export default function DocSearchComponent() {
       indexName="ChoreHero"
       askAi={
         // @ts-expect-error — askAi is a runtime-valid DocSearch v4 option
-        { assistantId: 'tWomB3HjvuYi' }
+        {
+          assistantId: 'tWomB3HjvuYi',
+          suggestedQuestions: true,
+          sidePanel: {
+            variant: 'inline',
+            pushSelector: '#docsearch-sidepanel-offset-anchor',
+          },
+        }
       }
     />
   );
