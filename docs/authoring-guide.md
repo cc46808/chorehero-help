@@ -55,14 +55,11 @@ When support copy depends on product behavior, cross-check:
 
 ## Algolia search and Ask AI
 
-Algolia search and the DocSearch Ask AI assistant have safe defaults in `docusaurus.config.js`, and you can override them with these build-time variables:
+The public help landing page uses the official hybrid DocSearch example in `src/components/HeroHybridSearch/HybridSearch.js`.
 
-- `DOCSEARCH_APP_ID`
-- `DOCSEARCH_API_KEY`
-- `DOCSEARCH_INDEX_NAME`
-- `DOCSEARCH_ASK_AI_ASSISTANT_ID`
+If the Algolia application, index, API key, or Ask AI assistant changes, update that component and redeploy the help site.
 
-This keeps the public search UI and Ask AI surface available in production while still allowing local or hosted overrides when Algolia settings change.
+The optional `help/.env` file is reserved for future local overrides, but the current hybrid search component does not read from it directly.
 
 ## PR expectations
 

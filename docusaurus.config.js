@@ -2,43 +2,6 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
-try {
-  process.loadEnvFile?.('.env');
-} catch (error) {
-  if (error?.code !== 'ENOENT') {
-    throw error;
-  }
-}
-
-const defaultDocsearchConfig = {
-  appId: 'HVCACK97MH',
-  apiKey: 'b79c2f7cdecacea1edc9696d03e1c07a',
-  indexName: 'ChoreHero',
-  assistantId: 'tWomB3HjvuYi',
-};
-
-const docsearchConfig = {
-  appId: process.env.DOCSEARCH_APP_ID ?? defaultDocsearchConfig.appId,
-  apiKey: process.env.DOCSEARCH_API_KEY ?? defaultDocsearchConfig.apiKey,
-  indexName: process.env.DOCSEARCH_INDEX_NAME ?? defaultDocsearchConfig.indexName,
-  assistantId:
-    process.env.DOCSEARCH_ASK_AI_ASSISTANT_ID ??
-    defaultDocsearchConfig.assistantId,
-};
-
-const hasDocsearch = Object.values(docsearchConfig).every(Boolean);
-const docsearchRuntimeConfig = hasDocsearch
-  ? {
-      appId: docsearchConfig.appId,
-      apiKey: docsearchConfig.apiKey,
-      indexName: docsearchConfig.indexName,
-      askAi: {
-        assistantId: docsearchConfig.assistantId,
-        suggestedQuestions: true,
-      },
-    }
-  : null;
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'ChoreHero Help Center',
@@ -56,9 +19,6 @@ const config = {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
-  },
-  customFields: {
-    docsearch: docsearchRuntimeConfig,
   },
   i18n: {
     defaultLocale: 'en',
