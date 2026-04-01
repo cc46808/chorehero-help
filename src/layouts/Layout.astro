@@ -84,6 +84,11 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
         window.Sentry?.init({
           dsn: sentryDsn,
           environment: sentryEnvironment,
+          integrations: [
+            window.Sentry.captureConsoleIntegration({
+              levels: ['error', 'warn', 'assert'],
+            }),
+          ],
           tracesSampleRate: Number.isFinite(sentryTracesSampleRate) ? sentryTracesSampleRate : 0.1,
         });
       </script>
