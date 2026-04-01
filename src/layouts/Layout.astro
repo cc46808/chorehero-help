@@ -81,6 +81,90 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
     )}
     {enableSentry && (
       <script define:vars={{ sentryDsn, sentryEnvironment, sentryTracesSampleRate }}>
+        const ignoreSentryPatterns = [
+          /^CHOREHERO_(?:CONSOLE|RUNTIME)_ERROR_TEST_/i,
+          /Lock broken by another request with the 'steal' option\./i,
+        ];
+        const dynamicImportFailurePatterns = [
+          /Failed to fetch dynamically imported module/i,
+          /Importing a module script failed/i,
+          /error loading dynamically imported module/i,
+          /Unable to preload CSS/i,
+        ];
+        const dynamicImportReloadKey = '__chorehero_dynamic_import_reload__';
+        const dynamicImportReloadWindowMs = 15000;
+
+        const collectErrorTexts = (value, target = []) => {
+          if (!value) return target;
+
+          if (typeof value === 'string') {
+            const normalized = value.trim();
+            if (normalized) target.push(normalized);
+            return target;
+          }
+
+          if (value instanceof Error) {
+            collectErrorTexts(value.name, target);
+            collectErrorTexts(value.message, target);
+          }
+
+          if (Array.isArray(value)) {
+            value.forEach((entry) => collectErrorTexts(entry, target));
+            return target;
+          }
+
+          collectErrorTexts(value.message, target);
+          collectErrorTexts(value.name, target);
+          collectErrorTexts(value.type, target);
+          collectErrorTexts(value.reason, target);
+          collectErrorTexts(value.formatted, target);
+          collectErrorTexts(value.value, target);
+
+          if (Array.isArray(value.exception?.values)) {
+            value.exception.values.forEach((entry) => collectErrorTexts(entry, target));
+          }
+
+          if (value.logentry) {
+            collectErrorTexts(value.logentry, target);
+          }
+
+          return target;
+        };
+
+        const matchesPatterns = (value, patterns) =>
+          collectErrorTexts(value).some((text) => patterns.some((pattern) => pattern.test(text)));
+
+        const shouldIgnoreSentryValue = (value) => matchesPatterns(value, ignoreSentryPatterns);
+        const shouldIgnoreSentryEvent = (event, hint) =>
+          shouldIgnoreSentryValue(event) ||
+          shouldIgnoreSentryValue(hint?.originalException) ||
+          shouldIgnoreSentryValue(hint?.syntheticException);
+
+        const recoverFromDynamicImportFailure = (value) => {
+          if (!matchesPatterns(value, dynamicImportFailurePatterns)) return false;
+
+          try {
+            const now = Date.now();
+            const currentHref = window.location.href;
+            const previousRaw = window.sessionStorage.getItem(dynamicImportReloadKey);
+            const previous = previousRaw ? JSON.parse(previousRaw) : null;
+            const retriedRecently =
+              previous?.href === currentHref &&
+              now - Number(previous?.at || 0) < dynamicImportReloadWindowMs;
+
+            if (retriedRecently) return false;
+
+            window.sessionStorage.setItem(
+              dynamicImportReloadKey,
+              JSON.stringify({ href: currentHref, at: now })
+            );
+            window.location.reload();
+            return true;
+          } catch {
+            return false;
+          }
+        };
+
         const consoleIntegration =
           typeof window.Sentry?.captureConsoleIntegration === 'function'
             ? window.Sentry.captureConsoleIntegration({
@@ -97,6 +181,20 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
           environment: sentryEnvironment,
           integrations: consoleIntegration ? [consoleIntegration] : [],
           tracesSampleRate: Number.isFinite(sentryTracesSampleRate) ? sentryTracesSampleRate : 0.1,
+          ignoreErrors: ignoreSentryPatterns,
+          beforeSend(event, hint) {
+            if (shouldIgnoreSentryEvent(event, hint)) {
+              return null;
+            }
+            return event;
+          },
+        });
+
+        window.addEventListener('vite:preloadError', (event) => {
+          const payload = event?.payload ?? event?.detail ?? event?.error ?? null;
+          if (recoverFromDynamicImportFailure(payload)) {
+            event.preventDefault?.();
+          }
         });
 
         if (!consoleIntegration && window.Sentry) {
@@ -117,6 +215,7 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
 
           const captureConsoleEvent = (level, args) => {
             if (isCapturing) return;
+            if (shouldIgnoreSentryValue(args)) return;
             isCapturing = true;
             try {
               const errorArg = args.find((arg) => arg instanceof Error);
@@ -159,6 +258,11 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
           window.__choreHeroSentryGlobalHandlersInstalled = true;
 
           window.addEventListener('error', (event) => {
+            const errorValue = event?.error || event?.message || 'Uncaught browser error';
+            if (recoverFromDynamicImportFailure(errorValue) || shouldIgnoreSentryValue(errorValue)) {
+              return;
+            }
+
             const error = event?.error instanceof Error
               ? event.error
               : new Error(event?.message || 'Uncaught browser error');
@@ -176,6 +280,10 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
 
           window.addEventListener('unhandledrejection', (event) => {
             const reason = event?.reason;
+            if (recoverFromDynamicImportFailure(reason) || shouldIgnoreSentryValue(reason)) {
+              return;
+            }
+
             const error = reason instanceof Error
               ? reason
               : new Error(typeof reason === 'string' ? reason : 'Unhandled promise rejection');
