@@ -49,6 +49,12 @@ const footerCols = [
     ],
   },
 ];
+
+const sentryEnabled = import.meta.env.PUBLIC_SENTRY_ENABLED === 'true';
+const sentryDsn = import.meta.env.PUBLIC_SENTRY_DSN ?? '';
+const sentryEnvironment = import.meta.env.PUBLIC_SENTRY_ENVIRONMENT ?? 'production';
+const sentryTracesSampleRate = Number(import.meta.env.PUBLIC_SENTRY_TRACES_SAMPLE_RATE ?? '0.1');
+const enableSentry = sentryEnabled && sentryDsn.length > 0;
 ---
 
 <!doctype html>
@@ -70,6 +76,18 @@ const footerCols = [
       rel="stylesheet"
     />
     <title>{fullTitle}</title>
+    {enableSentry && (
+      <script src="https://browser.sentry-cdn.com/10.22.0/bundle.min.js" crossorigin="anonymous"></script>
+    )}
+    {enableSentry && (
+      <script define:vars={{ sentryDsn, sentryEnvironment, sentryTracesSampleRate }}>
+        window.Sentry?.init({
+          dsn: sentryDsn,
+          environment: sentryEnvironment,
+          tracesSampleRate: Number.isFinite(sentryTracesSampleRate) ? sentryTracesSampleRate : 0.1,
+        });
+      </script>
+    )}
   </head>
   <body class="font-body text-ink antialiased min-h-screen">
     <a
