@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import DocSearch from '../components/DocSearch';
+import HybridDocSearch from '../components/HybridDocSearch';
 
 const quickLinks = [
   {
@@ -62,7 +62,7 @@ const supportLanes = [
                 billing, and family setup.
               </p>
               <div class="help-hero-search">
-                <DocSearch client:load />
+                <HybridDocSearch client:only="react" />
               </div>
             </div>
 

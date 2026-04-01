@@ -1,23 +1,18 @@
 import { DocSearch } from '@docsearch/react';
 import '@docsearch/css';
 
+const appId = 'HVCACK97MH';
+const apiKey = 'b79c2f7cdecacea1edc9696d03e1c07a';
+const indexName = 'ChoreHero';
+const assistantId = 'tWomB3HjvuYi';
+
 export default function DocSearchComponent() {
   return (
     <DocSearch
-      appId="HVCACK97MH"
-      apiKey="b79c2f7cdecacea1edc9696d03e1c07a"
-      indexName="ChoreHero"
-      askAi={
-        // @ts-expect-error — askAi is a runtime-valid DocSearch v4 option
-        {
-          assistantId: 'tWomB3HjvuYi',
-          suggestedQuestions: true,
-          sidePanel: {
-            variant: 'inline',
-            pushSelector: '#docsearch-sidepanel-offset-anchor',
-          },
-        }
-      }
+      appId={appId}
+      apiKey={apiKey}
+      indexName={indexName}
+      askAi={{ assistantId, suggestedQuestions: true }}
     />
   );
 }
