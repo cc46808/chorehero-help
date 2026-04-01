@@ -33,8 +33,8 @@ export default function HybridDocSearch() {
         assistantId={assistantId}
         button={{ variant: 'inline' }}
         panel={{
-          variant: 'inline',
-          pushSelector: '#docsearch-sidepanel-offset-anchor',
+          variant: 'floating',
+          side: 'right',
           suggestedQuestions: true,
         }}
       />
