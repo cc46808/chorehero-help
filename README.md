@@ -26,12 +26,15 @@ The primary deployment model is a Git-connected Cloudflare Pages project with:
 - build output directory: `build`
 - production branch: `main`
 
-See [`../docs/SUPPORT_SITE_SETUP.md`](../docs/SUPPORT_SITE_SETUP.md) for the exact dashboard settings, required GitHub setup, the current Algolia configuration path, and the optional secondary Wrangler fallback.
+See [`../docs/SUPPORT_SITE_SETUP.md`](../docs/SUPPORT_SITE_SETUP.md) for the exact dashboard settings, GitHub integration, Sentry setup, Algolia maintenance, and the optional Wrangler fallback.
 
 ## Algolia hybrid search
 
 The help center uses the official hybrid DocSearch React components for both standard search and Ask AI.
 
-The current search and Ask AI values live in [`src/components/HeroHybridSearch/HybridSearch.js`](./src/components/HeroHybridSearch/HybridSearch.js).
+The current search and Ask AI values live in:
 
-The optional `.env` file is reserved for future local overrides, but the current hybrid search component does not read from it directly.
+- [`src/components/DocSearch.tsx`](./src/components/DocSearch.tsx)
+- [`src/components/HybridDocSearch.tsx`](./src/components/HybridDocSearch.tsx)
+
+Keep local development guidance here and use [`../docs/SUPPORT_SITE_SETUP.md`](../docs/SUPPORT_SITE_SETUP.md) as the source of truth for production setup.
