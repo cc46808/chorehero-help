@@ -4,6 +4,8 @@ sidebar_position: 8
 description: Current support-routing guidance for ChoreHero account, billing, privacy, and troubleshooting questions.
 ---
 
+# Contact and Support
+
 ChoreHero support now follows a guided path:
 
 1. run quick self-checks first
@@ -16,13 +18,33 @@ Open the support hub: [Parent Dashboard support hub](https://app.chorehero.cloud
 
 Use this checklist before opening a ticket:
 
-- sign out and back in to refresh your parent session
-- confirm the household action from a clean page refresh
-- check whether the issue is account/login, billing, chores/rewards, or integrations
-- note exact error text and timestamp if an error appears
-- capture one screenshot if the problem is visual
+- confirm you are signed into the correct parent account and household
+- refresh the page and retry the same action once
+- verify whether this is mainly an account/login issue, a billing issue, or a chores/rewards workflow issue
+- check your internet connection and retry from a stable network
+- write down the exact error message and the time it happened
+- capture at least one screenshot when the issue is visible on screen
 
 If the issue is still unresolved, create a ticket in the support hub link above.
+
+## How to open a support ticket
+
+1. Open [Parent Dashboard support hub](https://app.chorehero.cloud/ParentDashboard?tab=account&account=support).
+2. Select the category that best matches your issue.
+3. Add a short summary of what you were trying to do.
+4. Include the details from the checklist above (error text, time, screenshots).
+5. Submit the ticket and keep the support hub open to monitor updates.
+
+### Ticket checklist (recommended)
+
+Include these details in every ticket so support can resolve it faster:
+
+- whether this affects parent actions, child actions, or both
+- the exact page or screen where the issue happens
+- the step that fails (for example, login, billing update, approving a chore, or reward redemption)
+- any recent changes before the issue started (plan change, onboarding update, settings change)
+- device and browser/app context when relevant
+- screenshot or copied error text
 
 ## Current routing
 
@@ -59,7 +81,3 @@ Share:
 - the **Account** nav badge shows pending support updates
 - ticket threads are visible in **Parent Dashboard > Account > Support**
 - support update emails include a direct link back to the same support hub
-
-:::note For the maintainer
-Keep this page aligned with the in-app support flow and status-notification behavior whenever the ticket lifecycle changes.
-:::
