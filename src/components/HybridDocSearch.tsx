@@ -7,9 +7,15 @@ const apiKey = 'b79c2f7cdecacea1edc9696d03e1c07a';
 const indexName = 'ChoreHero';
 const assistantId = 'tWomB3HjvuYi';
 
-export default function HybridDocSearch() {
+type HybridDocSearchProps = {
+  variant?: 'full' | 'icon';
+};
+
+export default function HybridDocSearch({ variant = 'full' }: HybridDocSearchProps) {
+  const shellClass = variant === 'icon' ? styles.searchShellIcon : styles.searchShellFull;
+
   return (
-    <div className={styles.searchShell}>
+    <div className={shellClass}>
       <DocSearch
         appId={appId}
         apiKey={apiKey}

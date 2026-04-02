@@ -1,7 +1,5 @@
 ---
-id: getting-started
 title: Getting Started
-slug: /getting-started
 sidebar_position: 2
 description: Set up a ChoreHero household, understand the parent dashboard, and get children into the right daily flow.
 ---
@@ -36,7 +34,7 @@ For the smoothest onboarding, start simple:
 - add a few rewards children can recognize immediately
 - decide whether chores need parent approval or proof before they count as done
 
-See [Chores and rewards basics](./chores-rewards-basics.md) for the product workflow details.
+See [Chores and rewards basics](/docs/chores-rewards-basics) for the product workflow details.
 
 ## 4. Choose how children will access the app
 
@@ -46,7 +44,7 @@ Child access can vary by household configuration and plan.
 - some use parent-managed quick-login or trusted-device flows
 - some advanced access paths depend on your active plan and current household settings
 
-See [Account, login, and onboarding](./account-login-onboarding.md) for the supported paths.
+See [Account, login, and onboarding](/docs/account-login-onboarding) for the supported paths.
 
 ## 5. Know what plan-dependent features look like
 
@@ -61,7 +59,7 @@ Examples of plan-dependent capabilities include:
 - announcements
 - integrations
 
-See [Billing and subscriptions](./billing-subscriptions.md) for the current support-level overview.
+See [Billing and subscriptions](/docs/billing-subscriptions) for the current support-level overview.
 
 ## Recommended first-week checklist
 

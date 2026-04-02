@@ -5,9 +5,15 @@ interface Props {
   title: string;
   description?: string;
   currentSlug: string;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
 }
 
-const { title, description, currentSlug } = Astro.props;
+const { title, description, currentSlug, headings = [] } = Astro.props;
+const pageAnchors = headings.filter(heading => heading.depth === 2 || heading.depth === 3);
 
 const sidebarItems = [
   { slug: 'intro', label: 'Overview' },
@@ -18,7 +24,6 @@ const sidebarItems = [
   { slug: 'chores-rewards-basics', label: 'Chores and rewards' },
   { slug: 'troubleshooting', label: 'Troubleshooting' },
   { slug: 'contact-support', label: 'Contact and support' },
-  { slug: 'authoring-guide', label: 'Authoring guide' },
 ];
 ---
 
@@ -27,8 +32,8 @@ const sidebarItems = [
     <div class="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
 
       <!-- Sidebar -->
-      <aside class="w-full md:w-56 lg:w-64 shrink-0">
-        <nav class="md:sticky md:top-20" aria-label="Docs navigation">
+      <aside class="w-full md:w-56 lg:w-64 shrink-0 md:sticky md:top-20 self-start">
+        <nav aria-label="Docs navigation">
           <p class="eyebrow mb-3 px-3">Documentation</p>
           <ul class="space-y-0.5">
             {sidebarItems.map(item => {
@@ -70,6 +75,152 @@ const sidebarItems = [
         </div>
       </article>
 
+      <!-- Right-side page anchors -->
+      <aside class="hidden lg:block w-56 shrink-0 md:sticky md:top-20 self-start">
+        <nav aria-label="On this page">
+          <p class="eyebrow mb-3 px-3">On this page</p>
+          {pageAnchors.length > 0 ? (
+            <ul class="space-y-0.5">
+              {pageAnchors.map(anchor => (
+                <li>
+                  <a
+                    href={`#${anchor.slug}`}
+                    data-anchor-link
+                    data-anchor-slug={anchor.slug}
+                    class:list={[
+                      'toc-link flex items-center rounded-lg px-3 py-1.5 text-[0.84rem] font-medium transition-colors duration-150',
+                      anchor.depth === 3
+                        ? 'toc-link-sub pl-6 text-ink/55 hover:bg-brand/[0.04] hover:text-cobalt'
+                        : 'text-ink/65 hover:bg-brand/[0.05] hover:text-cobalt',
+                    ]}
+                  >
+                    {anchor.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="px-3 text-[0.82rem] text-ink/50">No section anchors on this page.</p>
+          )}
+        </nav>
+      </aside>
+
     </div>
   </div>
 </Layout>
+
+<script is:inline>
+  (() => {
+    const links = Array.from(document.querySelectorAll('[data-anchor-link]'));
+    if (!links.length) return;
+
+    const targets = links
+      .map(link => {
+        const slug = link.getAttribute('data-anchor-slug');
+        if (!slug) return null;
+        const section = document.getElementById(slug);
+        if (!section) return null;
+        return { slug, link, section };
+      })
+      .filter(Boolean);
+
+    if (!targets.length) return;
+
+    const topOffset = 96;
+    const visibleSlugs = new Set();
+    let activeSlug = null;
+
+    const setActive = slug => {
+      if (!slug || slug === activeSlug) return;
+      activeSlug = slug;
+
+      for (const item of targets) {
+        const isActive = item.slug === slug;
+        item.link.classList.toggle('is-active', isActive);
+        if (isActive) {
+          item.link.setAttribute('aria-current', 'location');
+        } else {
+          item.link.removeAttribute('aria-current');
+        }
+      }
+    };
+
+    const pickByScrollPosition = () => {
+      let candidate = targets[0].slug;
+      for (const item of targets) {
+        if (item.section.getBoundingClientRect().top - topOffset <= 0) {
+          candidate = item.slug;
+        } else {
+          break;
+        }
+      }
+      return candidate;
+    };
+
+    const refreshActive = () => {
+      if (visibleSlugs.size) {
+        const visibleOrdered = targets.filter(item => visibleSlugs.has(item.slug));
+        if (visibleOrdered.length) {
+          setActive(visibleOrdered[0].slug);
+          return;
+        }
+      }
+      setActive(pickByScrollPosition());
+    };
+
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          const slug = entry.target.id;
+          if (!slug) continue;
+          if (entry.isIntersecting) {
+            visibleSlugs.add(slug);
+          } else {
+            visibleSlugs.delete(slug);
+          }
+        }
+        refreshActive();
+      },
+      {
+        rootMargin: '-96px 0px -60% 0px',
+        threshold: [0, 1],
+      }
+    );
+
+    for (const item of targets) {
+      observer.observe(item.section);
+    }
+
+    window.addEventListener('scroll', refreshActive, { passive: true });
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash ? window.location.hash.slice(1) : '';
+      if (hash) setActive(hash);
+    });
+
+    const initialHash = window.location.hash ? window.location.hash.slice(1) : '';
+    if (initialHash && targets.some(item => item.slug === initialHash)) {
+      setActive(initialHash);
+    } else {
+      refreshActive();
+    }
+  })();
+</script>
+
+<style>
+  :global(.prose h2),
+  :global(.prose h3) {
+    scroll-margin-top: 6.5rem;
+  }
+
+  .toc-link.is-active {
+    background: rgba(49, 83, 164, 0.1);
+    color: #2563eb;
+    font-weight: 700;
+  }
+
+  .toc-link.toc-link-sub.is-active {
+    background: rgba(49, 83, 164, 0.08);
+    color: #3153a4;
+    font-weight: 600;
+  }
+</style>

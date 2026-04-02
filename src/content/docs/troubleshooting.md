@@ -1,7 +1,5 @@
 ---
-id: troubleshooting
 title: Troubleshooting
-slug: /troubleshooting
 sidebar_position: 7
 description: Fast checks for common ChoreHero issues including sign-in trouble, child access, missing chores, plan changes, and browser support.
 ---
@@ -69,7 +67,7 @@ Integrations are stricter than many other paid features. If the integrations sur
 
 ## Still stuck?
 
-Move to [Contact and support](./contact-support.md) and include:
+Move to [Contact and support](/docs/contact-support) and include:
 
 - what you expected to happen
 - what actually happened

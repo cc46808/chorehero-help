@@ -17,6 +17,12 @@ npm run build
 
 The static output is written to `build/`.
 
+## Internal docs authoring guide
+
+The internal support-docs authoring reference lives at:
+
+- [`docs/authoring-guide-internal.md`](./docs/authoring-guide-internal.md)
+
 ## Cloudflare Pages
 
 The primary deployment model is a Git-connected Cloudflare Pages project with:

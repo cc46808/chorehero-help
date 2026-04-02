@@ -1,7 +1,5 @@
 ---
-id: billing-subscriptions
 title: Billing and Subscriptions
-slug: /billing-subscriptions
 sidebar_position: 4
 description: Understand ChoreHero plans, Stripe-backed billing, where to manage subscriptions, and how plan changes affect features.
 ---
@@ -64,12 +62,4 @@ Use this short checklist before escalating:
 - open **Settings > Account**
 - confirm whether the plan is active, trialing, canceled, inactive, or past due
 - note which feature changed behavior
-- compare the issue against [Troubleshooting](./troubleshooting.md)
-
-## Important note for docs maintainers
-
-This article should stay aligned with:
-
-- `docs/FEATURE_MATRIX.md`
-- `src/functions/_shared/billing.js`
-- `src/lib/entitlements.js`
+- compare the issue against [Troubleshooting](/docs/troubleshooting)

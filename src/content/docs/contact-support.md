@@ -1,7 +1,5 @@
 ---
-id: contact-support
 title: Contact and Support
-slug: /contact-support
 sidebar_position: 8
 description: Current support-routing guidance for ChoreHero account, billing, privacy, and troubleshooting questions.
 ---

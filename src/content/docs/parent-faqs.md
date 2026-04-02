@@ -1,7 +1,5 @@
 ---
-id: parent-faqs
 title: Parent FAQs
-slug: /parent-faqs
 sidebar_position: 3
 description: Common ChoreHero questions about daily routines, child access, approvals, rewards, and plan-aware features.
 ---
@@ -35,7 +33,7 @@ If proof suddenly disappears, check both your current plan state and any recent 
 
 ## What if a child cannot get back into their dashboard?
 
-Start with [Account, login, and onboarding](./account-login-onboarding.md) and then use [Troubleshooting](./troubleshooting.md) if the issue persists.
+Start with [Account, login, and onboarding](/docs/account-login-onboarding) and then use [Troubleshooting](/docs/troubleshooting) if the issue persists.
 
 ## Where do billing and subscription settings live?
 
@@ -53,6 +51,6 @@ They can. Features such as proof uploads, quick login, device approvals, AI acce
 
 Use this order:
 
-1. [Troubleshooting](./troubleshooting.md)
-2. [Billing and subscriptions](./billing-subscriptions.md) if the issue started after a plan change
-3. [Contact and support](./contact-support.md) if you need a support handoff path
+1. [Troubleshooting](/docs/troubleshooting)
+2. [Billing and subscriptions](/docs/billing-subscriptions) if the issue started after a plan change
+3. [Contact and support](/docs/contact-support) if you need a support handoff path

@@ -13,12 +13,6 @@
         "sidebar_position": {
           "type": "number"
         },
-        "slug": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
         "$schema": {
           "type": "string"
         }

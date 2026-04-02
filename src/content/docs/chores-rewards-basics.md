@@ -1,7 +1,5 @@
 ---
-id: chores-rewards-basics
 title: Chores and Rewards Basics
-slug: /chores-rewards-basics
 sidebar_position: 6
 description: Learn the core ChoreHero workflow for recurring chores, approvals, proof, rewards, and family visibility.
 ---
@@ -31,7 +29,7 @@ Parents can use chores to:
 
 Some chores can be approved directly, while others may require submission or proof before they count as complete.
 
-Proof behavior can depend on plan access and current subscription state. If a proof option is missing or unavailable, review [Billing and subscriptions](./billing-subscriptions.md).
+Proof behavior can depend on plan access and current subscription state. If a proof option is missing or unavailable, review [Billing and subscriptions](/docs/billing-subscriptions).
 
 ## Rewards
 

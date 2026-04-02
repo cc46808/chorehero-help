@@ -1,7 +1,5 @@
 ---
-id: account-login-onboarding
 title: Account, Login, and Onboarding
-slug: /account-login-onboarding
 sidebar_position: 5
 description: Help for parent sign-in, child access paths, onboarding expectations, and account-level settings in ChoreHero.
 ---
@@ -49,7 +47,7 @@ Check these first:
 - was a device approval revoked?
 - did a recent plan change affect quick-login or device-approval access?
 
-If the answers are unclear, continue with [Troubleshooting](./troubleshooting.md).
+If the answers are unclear, continue with [Troubleshooting](/docs/troubleshooting).
 
 ## If the wrong parent account signs in
 
