@@ -34,7 +34,6 @@ The help center uses the official hybrid DocSearch React components for both sta
 
 The current search and Ask AI values live in:
 
-- [`src/components/DocSearch.tsx`](./src/components/DocSearch.tsx)
 - [`src/components/HybridDocSearch.tsx`](./src/components/HybridDocSearch.tsx)
 
 Keep local development guidance here and use [`../docs/SUPPORT_SITE_SETUP.md`](../docs/SUPPORT_SITE_SETUP.md) as the source of truth for production setup.
