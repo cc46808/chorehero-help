@@ -32,6 +32,12 @@ The exact combination depends on the household configuration and active plan fea
 
 Quick Hero Login links are the fastest child access path when they are available on your plan.
 
+![Family Access settings showing quick login links and fallback code](/img/help-guides/account-login-family-access-settings.png)
+
+![Quick Hero Login showing parent approval required on an untrusted device](/img/help-guides/account-login-quick-link-approval.png)
+
+![Quick Hero Login after approval showing trusted hero and PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png)
+
 What the child does:
 
 1. Open the hero's Quick Hero Login link.
@@ -51,6 +57,10 @@ This path works best for routine access on a home tablet, shared family device, 
 ### Family code fallback login
 
 Family code login is the standard backup path when a quick login link is not being used.
+
+![Child login screen showing family-code fallback flow](/img/help-guides/account-login-child-fallback-login.png)
+
+![Child login showing hero selection and PIN entry after entering family code](/img/help-guides/account-login-child-hero-selection.png)
 
 What the child does:
 
@@ -85,6 +95,14 @@ During initial setup, parents usually:
 3. create the first chores and rewards
 4. confirm how children will sign in
 5. review settings and account controls
+
+![Family fallback code card in settings](/img/help-guides/account-login-family-code-card.png)
+
+![Child Profile PIN controls in settings](/img/help-guides/account-login-child-profile-pins-card.png)
+
+![Child Quick Login Links and rotation controls in settings](/img/help-guides/account-login-child-quick-links-card.png)
+
+![Pending device approvals area in settings](/img/help-guides/account-login-device-approvals-card.png)
 
 For many families, the cleanest setup is:
 

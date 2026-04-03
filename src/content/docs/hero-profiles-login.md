@@ -177,6 +177,12 @@ What it is:
 - the primary child login method when quick login is available on your plan
 - designed for faster repeat access on trusted devices
 
+![Parent Family Access settings with child quick login controls](/img/help-guides/account-login-family-access-settings.png)
+
+![Quick Hero Login approval screen when a new device needs parent PIN approval](/img/help-guides/account-login-quick-link-approval.png)
+
+![Quick Hero Login trusted state with hero PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png)
+
 How the child uses it:
 
 1. Open the quick login link for that hero.
@@ -202,6 +208,10 @@ What it is:
 
 - the standard backup child login method
 - child signs in with family code first, then chooses their hero, then enters the hero PIN
+
+![Child fallback login screen for family code plus hero PIN](/img/help-guides/account-login-child-fallback-login.png)
+
+![Child fallback flow showing hero selection before PIN entry](/img/help-guides/account-login-child-hero-selection.png)
 
 How the child uses it:
 
@@ -262,6 +272,8 @@ Important:
 
 - generated PINs should be recorded immediately because they are shown once after generation
 
+![Child Profile PIN controls for setting and generating PINs](/img/help-guides/account-login-child-profile-pins-card.png)
+
 ### Copy a quick login link
 
 What it does:
@@ -280,6 +292,8 @@ Examples:
 - paste it into the child's Chromebook bookmarks
 - keep it on a shared kitchen tablet for after-school check-ins
 
+![Child Quick Login Links controls for copy and rotate actions](/img/help-guides/account-login-child-quick-links-card.png)
+
 ### Approve a new device
 
 If a child opens a quick login link on a device that is not trusted yet:
@@ -295,6 +309,8 @@ Examples:
 - approve a replacement tablet after the old one is lost
 - approve a second device used only on weekends
 - delay approval until you confirm the device belongs in your household
+
+![Pending Device Approvals panel for approving or rejecting devices](/img/help-guides/account-login-device-approvals-card.png)
 
 ### Rotate a quick login link
 
