@@ -27,6 +27,8 @@ After sign-in, make sure you can:
 - open **Settings > Account** for account and billing controls
 - confirm your household theme and general settings look right
 
+For option-by-option hero setup guidance, see [Managing heroes](/docs/managing-heroes).
+
 ## 3. Add your first chores and rewards
 
 For the smoothest onboarding, start simple:
@@ -37,6 +39,11 @@ For the smoothest onboarding, start simple:
 - decide whether chores need parent approval or proof before they count as done
 
 See [Chores and rewards basics](/docs/chores-rewards-basics) for the product workflow details.
+For full field-level setup, use:
+
+- [Creating chores](/docs/creating-chores)
+- [Setting up rewards](/docs/setting-up-rewards)
+- [Understanding achievements](/docs/understanding-achievements)
 
 ## 4. Choose how children will access the app
 

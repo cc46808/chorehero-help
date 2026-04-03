@@ -58,3 +58,12 @@ To keep routines clear:
 - make reward rules easy to understand
 - avoid changing too many rules at once
 - document support-facing behavior whenever the daily flow changes
+
+## Continue with detailed setup
+
+Use these deep-dive guides when you need option-by-option instructions and examples:
+
+- [Managing heroes](/docs/managing-heroes)
+- [Creating chores](/docs/creating-chores)
+- [Setting up rewards](/docs/setting-up-rewards)
+- [Understanding achievements](/docs/understanding-achievements)

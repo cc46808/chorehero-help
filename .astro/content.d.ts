@@ -158,21 +158,97 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		
+		"docs": {
+"account-login-onboarding.md": {
+	id: "account-login-onboarding.md";
+  slug: "account-login-onboarding";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"billing-subscriptions.md": {
+	id: "billing-subscriptions.md";
+  slug: "billing-subscriptions";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"chores-rewards-basics.md": {
+	id: "chores-rewards-basics.md";
+  slug: "chores-rewards-basics";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"contact-support.md": {
+	id: "contact-support.md";
+  slug: "contact-support";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"creating-chores.md": {
+	id: "creating-chores.md";
+  slug: "creating-chores";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"getting-started.md": {
+	id: "getting-started.md";
+  slug: "getting-started";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"hero-profiles-login.md": {
+	id: "hero-profiles-login.md";
+  slug: "managing-heroes";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"intro.md": {
+	id: "intro.md";
+  slug: "intro";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"parent-faqs.md": {
+	id: "parent-faqs.md";
+  slug: "parent-faqs";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"setting-up-rewards.md": {
+	id: "setting-up-rewards.md";
+  slug: "setting-up-rewards";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"troubleshooting.md": {
+	id: "troubleshooting.md";
+  slug: "troubleshooting";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+"understanding-achievements.md": {
+	id: "understanding-achievements.md";
+  slug: "understanding-achievements";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".md"] };
+};
+
 	};
 
 	type DataEntryMap = {
-		"docs": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
