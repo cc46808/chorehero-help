@@ -25,6 +25,8 @@ Parents can use chores to:
 - decide when parent review is required
 - control whether proof is part of the flow
 
+![Chores tab in Parent Dashboard](/img/help-guides/chores-rewards-parent-chores-tab.png)
+
 ## Approvals and proof
 
 Some chores can be approved directly, while others may require submission or proof before they count as complete.

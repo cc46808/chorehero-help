@@ -204,6 +204,65 @@ const sidebarItems = [
       refreshActive();
     }
   })();
+
+  (() => {
+    const contentRoot = document.querySelector('.prose');
+    if (!contentRoot) return;
+
+    const images = Array.from(contentRoot.querySelectorAll('img'));
+    if (!images.length) return;
+
+    const dialog = document.createElement('dialog');
+    dialog.className = 'doc-image-lightbox';
+    dialog.innerHTML = `
+      <button type="button" class="doc-image-lightbox-close" aria-label="Close image">Close</button>
+      <img class="doc-image-lightbox-media" alt="" />
+      <p class="doc-image-lightbox-caption" aria-live="polite"></p>
+    `;
+
+    document.body.appendChild(dialog);
+
+    const dialogImage = dialog.querySelector('.doc-image-lightbox-media');
+    const dialogCaption = dialog.querySelector('.doc-image-lightbox-caption');
+    const closeButton = dialog.querySelector('.doc-image-lightbox-close');
+
+    const closeDialog = () => {
+      if (dialog.open) dialog.close();
+    };
+
+    closeButton?.addEventListener('click', closeDialog);
+
+    dialog.addEventListener('click', event => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      if (target === dialog) closeDialog();
+    });
+
+    images.forEach(image => {
+      image.classList.add('doc-zoomable-image');
+      image.setAttribute('role', 'button');
+      image.setAttribute('tabindex', '0');
+      image.setAttribute('aria-label', `Open image: ${image.alt || 'Documentation image'}`);
+
+      const openDialog = () => {
+        if (!dialogImage) return;
+        dialogImage.src = image.currentSrc || image.src;
+        dialogImage.alt = image.alt || 'Documentation image';
+        if (dialogCaption) {
+          dialogCaption.textContent = image.alt || '';
+        }
+        dialog.showModal();
+      };
+
+      image.addEventListener('click', openDialog);
+      image.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openDialog();
+        }
+      });
+    });
+  })();
 </script>
 
 <style>
@@ -222,5 +281,60 @@ const sidebarItems = [
     background: rgba(49, 83, 164, 0.08);
     color: #3153a4;
     font-weight: 600;
+  }
+
+  :global(.prose .doc-zoomable-image) {
+    cursor: zoom-in;
+    transition: transform 140ms ease, box-shadow 140ms ease;
+  }
+
+  :global(.prose .doc-zoomable-image:hover) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+  }
+
+  :global(dialog.doc-image-lightbox) {
+    border: none;
+    border-radius: 14px;
+    padding: 0;
+    width: min(94vw, 1180px);
+    background: #f8fafc;
+    box-shadow: 0 26px 72px rgba(2, 6, 23, 0.45);
+  }
+
+  :global(dialog.doc-image-lightbox::backdrop) {
+    background: rgba(2, 6, 23, 0.68);
+  }
+
+  :global(.doc-image-lightbox-close) {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: 1px solid rgba(15, 23, 42, 0.2);
+    border-radius: 10px;
+    background: rgba(248, 250, 252, 0.95);
+    color: #0f172a;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 0.45rem 0.7rem;
+    cursor: pointer;
+  }
+
+  :global(.doc-image-lightbox-media) {
+    display: block;
+    max-width: 100%;
+    max-height: min(82vh, 920px);
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 14px 14px 0 0;
+  }
+
+  :global(.doc-image-lightbox-caption) {
+    margin: 0;
+    padding: 0.65rem 1rem 0.95rem;
+    font-size: 0.86rem;
+    color: #334155;
+    text-align: center;
+    min-height: 1.8rem;
   }
 </style>

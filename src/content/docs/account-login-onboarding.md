@@ -18,6 +18,8 @@ After sign-in, confirm that:
 - the parent dashboard loads without errors
 - your account settings are visible under **Settings > Account**
 
+![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png)
+
 ## Child access paths
 
 Child access can include:
