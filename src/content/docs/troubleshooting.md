@@ -15,7 +15,7 @@ Use the checks below before escalating a support issue.
 - refresh the session or sign out and sign back in
 - make sure the household is not opening an old saved tab
 
-![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png?v=3)
+![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png?v=4)
 
 ## Child quick-login or child access stopped working
 
@@ -55,7 +55,7 @@ This is especially important when the issue involves:
 - device approvals
 - integrations
 
-![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=3)
+![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=4)
 
 ## Push notifications do not work
 
@@ -80,4 +80,4 @@ Move to [Contact and support](/docs/contact-support) and include:
 - whether the issue affects parents, children, or both
 - whether the problem started after a billing, login, or settings change
 
-![Parent Dashboard support ticket intake flow in the app](/img/help-guides/contact-support-ticket-flow.png?v=3)
+![Parent Dashboard support ticket intake flow in the app](/img/help-guides/contact-support-ticket-flow.png?v=4)

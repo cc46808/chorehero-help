@@ -7,7 +7,7 @@ description: Create and manage hero profiles, login PINs, linked child accounts,
 
 In ChoreHero, each child profile is a hero. Parents create and manage heroes from the parent dashboard.
 
-![Manage Heroes tab with hero profile controls](/img/help-guides/managing-heroes-parent-tab.png?v=3)
+![Manage Heroes tab with hero profile controls](/img/help-guides/managing-heroes-parent-tab.png?v=4)
 
 ## Create a new hero
 
@@ -184,8 +184,8 @@ What it is:
 <figure class="doc-image-gallery">
   <img src="/img/help-guides/account-login-family-access-settings.png?v=3" alt="Parent Family Access settings with child quick login controls" />
   <a href="/img/help-guides/account-login-family-access-settings.png?v=3" data-doc-gallery-item data-alt="Parent Family Access settings with child quick login controls" hidden></a>
-  <a href="/img/help-guides/account-login-quick-link-approval.png?v=3" data-doc-gallery-item data-alt="Quick Hero Login approval screen when a new device needs parent PIN approval" hidden></a>
-  <a href="/img/help-guides/account-login-quick-link-trusted-pin.png?v=3" data-doc-gallery-item data-alt="Quick Hero Login trusted state with hero PIN entry" hidden></a>
+  <a href="/img/help-guides/account-login-quick-link-approval.png?v=4" data-doc-gallery-item data-alt="Quick Hero Login approval screen when a new device needs parent PIN approval" hidden></a>
+  <a href="/img/help-guides/account-login-quick-link-trusted-pin.png?v=4" data-doc-gallery-item data-alt="Quick Hero Login trusted state with hero PIN entry" hidden></a>
 </figure>
 
 How the child uses it:
@@ -215,9 +215,9 @@ What it is:
 - child signs in with family code first, then chooses their hero, then enters the hero PIN
 
 <figure class="doc-image-gallery">
-  <img src="/img/help-guides/account-login-child-fallback-login.png?v=3" alt="Child fallback login screen for family code plus hero PIN" />
-  <a href="/img/help-guides/account-login-child-fallback-login.png?v=3" data-doc-gallery-item data-alt="Child fallback login screen for family code plus hero PIN" hidden></a>
-  <a href="/img/help-guides/account-login-child-hero-selection.png?v=3" data-doc-gallery-item data-alt="Child fallback flow showing hero selection before PIN entry" hidden></a>
+  <img src="/img/help-guides/account-login-child-fallback-login.png?v=4" alt="Child fallback login screen for family code plus hero PIN" />
+  <a href="/img/help-guides/account-login-child-fallback-login.png?v=4" data-doc-gallery-item data-alt="Child fallback login screen for family code plus hero PIN" hidden></a>
+  <a href="/img/help-guides/account-login-child-hero-selection.png?v=4" data-doc-gallery-item data-alt="Child fallback flow showing hero selection before PIN entry" hidden></a>
 </figure>
 
 How the child uses it:

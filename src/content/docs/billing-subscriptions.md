@@ -28,7 +28,7 @@ Start from the parent-facing app:
 2. Go to **Parent Dashboard > Settings > Account**
 3. Use the available billing or customer-portal actions from there
 
-![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=3)
+![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=4)
 
 ChoreHero uses Stripe-backed billing workflows for checkout and subscription management.
 

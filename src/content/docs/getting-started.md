@@ -16,7 +16,7 @@ Open the live product at [app.chorehero.cloud/login](https://app.chorehero.cloud
 - finish the initial family setup flow
 - confirm your parent-facing dashboard loads correctly
 
-![Parent Dashboard overview in the app](/img/help-guides/getting-started-parent-dashboard-overview.png?v=3)
+![Parent Dashboard overview in the app](/img/help-guides/getting-started-parent-dashboard-overview.png?v=4)
 
 ## 2. Set up your household basics
 
@@ -27,7 +27,7 @@ After sign-in, make sure you can:
 - open **Settings > Account** for account and billing controls
 - confirm your household theme and general settings look right
 
-![Manage Heroes tab with hero profile controls](/img/help-guides/managing-heroes-parent-tab.png?v=3)
+![Manage Heroes tab with hero profile controls](/img/help-guides/managing-heroes-parent-tab.png?v=4)
 
 For option-by-option hero setup guidance, see [Managing heroes](/docs/managing-heroes).
 
@@ -78,7 +78,7 @@ Examples of plan-dependent capabilities include:
 - announcements
 - integrations
 
-![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=3)
+![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=4)
 
 See [Billing and subscriptions](/docs/billing-subscriptions) for the current support-level overview.
 

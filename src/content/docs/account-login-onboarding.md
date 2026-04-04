@@ -16,7 +16,7 @@ After sign-in, confirm that:
 - the parent dashboard loads without errors
 - your account settings are visible under **Settings > Account**
 
-![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png?v=3)
+![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png?v=4)
 
 ## Child access paths
 
@@ -35,8 +35,8 @@ Quick Hero Login links are the fastest child access path when they are available
 <figure class="doc-image-gallery">
   <img src="/img/help-guides/account-login-family-access-settings.png?v=3" alt="Family Access settings showing quick login links and fallback code" />
   <a href="/img/help-guides/account-login-family-access-settings.png?v=3" data-doc-gallery-item data-alt="Family Access settings showing quick login links and fallback code" hidden></a>
-  <a href="/img/help-guides/account-login-quick-link-approval.png?v=3" data-doc-gallery-item data-alt="Quick Hero Login showing parent approval required on an untrusted device" hidden></a>
-  <a href="/img/help-guides/account-login-quick-link-trusted-pin.png?v=3" data-doc-gallery-item data-alt="Quick Hero Login after approval showing trusted hero and PIN entry" hidden></a>
+  <a href="/img/help-guides/account-login-quick-link-approval.png?v=4" data-doc-gallery-item data-alt="Quick Hero Login showing parent approval required on an untrusted device" hidden></a>
+  <a href="/img/help-guides/account-login-quick-link-trusted-pin.png?v=4" data-doc-gallery-item data-alt="Quick Hero Login after approval showing trusted hero and PIN entry" hidden></a>
 </figure>
 
 What the child does:
@@ -60,9 +60,9 @@ This path works best for routine access on a home tablet, shared family device, 
 Family code login is the standard backup path when a quick login link is not being used.
 
 <figure class="doc-image-gallery">
-  <img src="/img/help-guides/account-login-child-fallback-login.png?v=3" alt="Child login screen showing family-code fallback flow" />
-  <a href="/img/help-guides/account-login-child-fallback-login.png?v=3" data-doc-gallery-item data-alt="Child login screen showing family-code fallback flow" hidden></a>
-  <a href="/img/help-guides/account-login-child-hero-selection.png?v=3" data-doc-gallery-item data-alt="Child login showing hero selection and PIN entry after entering family code" hidden></a>
+  <img src="/img/help-guides/account-login-child-fallback-login.png?v=4" alt="Child login screen showing family-code fallback flow" />
+  <a href="/img/help-guides/account-login-child-fallback-login.png?v=4" data-doc-gallery-item data-alt="Child login screen showing family-code fallback flow" hidden></a>
+  <a href="/img/help-guides/account-login-child-hero-selection.png?v=4" data-doc-gallery-item data-alt="Child login showing hero selection and PIN entry after entering family code" hidden></a>
 </figure>
 
 What the child does:
