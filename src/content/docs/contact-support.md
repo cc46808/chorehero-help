@@ -35,7 +35,7 @@ If the issue is still unresolved, create a ticket in the support hub link above.
 4. Include the details from the checklist above (error text, time, screenshots).
 5. Submit the ticket and keep the support hub open to monitor updates.
 
-![Parent Dashboard support ticket intake flow in the app](/img/help-guides/contact-support-ticket-flow.png)
+![Parent Dashboard support ticket intake flow in the app](/img/help-guides/contact-support-ticket-flow.png?v=3)
 
 The screenshot above shows the in-app support intake panel used for creating a new ticket from the parent account.
 
@@ -86,6 +86,6 @@ Share:
 - ticket threads are visible in **Parent Dashboard > Account > Support**
 - support update emails include a direct link back to the same support hub
 
-![Parent Dashboard support status updates panel in the app](/img/help-guides/contact-support-status-updates.png)
+![Parent Dashboard support status updates panel in the app](/img/help-guides/contact-support-status-updates.png?v=3)
 
 The screenshot above shows where ticket status and support updates appear inside the parent support hub.

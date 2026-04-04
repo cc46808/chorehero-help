@@ -16,7 +16,7 @@ After sign-in, confirm that:
 - the parent dashboard loads without errors
 - your account settings are visible under **Settings > Account**
 
-![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png)
+![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png?v=3)
 
 ## Child access paths
 
@@ -32,11 +32,11 @@ The exact combination depends on the household configuration and active plan fea
 
 Quick Hero Login links are the fastest child access path when they are available on your plan.
 
-![Family Access settings showing quick login links and fallback code](/img/help-guides/account-login-family-access-settings.png)
+![Family Access settings showing quick login links and fallback code](/img/help-guides/account-login-family-access-settings.png?v=3)
 
-![Quick Hero Login showing parent approval required on an untrusted device](/img/help-guides/account-login-quick-link-approval.png)
+![Quick Hero Login showing parent approval required on an untrusted device](/img/help-guides/account-login-quick-link-approval.png?v=3)
 
-![Quick Hero Login after approval showing trusted hero and PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png)
+![Quick Hero Login after approval showing trusted hero and PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png?v=3)
 
 What the child does:
 
@@ -58,9 +58,9 @@ This path works best for routine access on a home tablet, shared family device, 
 
 Family code login is the standard backup path when a quick login link is not being used.
 
-![Child login screen showing family-code fallback flow](/img/help-guides/account-login-child-fallback-login.png)
+![Child login screen showing family-code fallback flow](/img/help-guides/account-login-child-fallback-login.png?v=3)
 
-![Child login showing hero selection and PIN entry after entering family code](/img/help-guides/account-login-child-hero-selection.png)
+![Child login showing hero selection and PIN entry after entering family code](/img/help-guides/account-login-child-hero-selection.png?v=3)
 
 What the child does:
 
@@ -96,13 +96,13 @@ During initial setup, parents usually:
 4. confirm how children will sign in
 5. review settings and account controls
 
-![Family fallback code card in settings](/img/help-guides/account-login-family-code-card.png)
+![Family fallback code card in settings](/img/help-guides/account-login-family-code-card.png?v=3)
 
-![Child Profile PIN controls in settings](/img/help-guides/account-login-child-profile-pins-card.png)
+![Child Profile PIN controls in settings](/img/help-guides/account-login-child-profile-pins-card.png?v=3)
 
-![Child Quick Login Links and rotation controls in settings](/img/help-guides/account-login-child-quick-links-card.png)
+![Child Quick Login Links and rotation controls in settings](/img/help-guides/account-login-child-quick-links-card.png?v=3)
 
-![Pending device approvals area in settings](/img/help-guides/account-login-device-approvals-card.png)
+![Pending device approvals area in settings](/img/help-guides/account-login-device-approvals-card.png?v=3)
 
 For many families, the cleanest setup is:
 

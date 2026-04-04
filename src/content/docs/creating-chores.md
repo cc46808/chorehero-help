@@ -8,7 +8,7 @@ description: Configure chore options step by step, including assignment, schedul
 
 Chore creation in ChoreHero uses a 3-step wizard. This page explains what every major option means and when to use it.
 
-![Chores tab with Add Chore action in Parent Dashboard](/img/help-guides/creating-chores-parent-tab.png)
+![Chores tab with Add Chore action in Parent Dashboard](/img/help-guides/creating-chores-parent-tab.png?v=3)
 
 ## Step 1: Basics
 

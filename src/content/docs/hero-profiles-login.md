@@ -7,7 +7,7 @@ description: Create and manage hero profiles, login PINs, linked child accounts,
 
 In ChoreHero, each child profile is a hero. Parents create and manage heroes from the parent dashboard.
 
-![Manage Heroes tab with hero profile controls](/img/help-guides/managing-heroes-parent-tab.png)
+![Manage Heroes tab with hero profile controls](/img/help-guides/managing-heroes-parent-tab.png?v=3)
 
 ## Create a new hero
 
@@ -177,11 +177,11 @@ What it is:
 - the primary child login method when quick login is available on your plan
 - designed for faster repeat access on trusted devices
 
-![Parent Family Access settings with child quick login controls](/img/help-guides/account-login-family-access-settings.png)
+![Parent Family Access settings with child quick login controls](/img/help-guides/account-login-family-access-settings.png?v=3)
 
-![Quick Hero Login approval screen when a new device needs parent PIN approval](/img/help-guides/account-login-quick-link-approval.png)
+![Quick Hero Login approval screen when a new device needs parent PIN approval](/img/help-guides/account-login-quick-link-approval.png?v=3)
 
-![Quick Hero Login trusted state with hero PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png)
+![Quick Hero Login trusted state with hero PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png?v=3)
 
 How the child uses it:
 
@@ -209,9 +209,9 @@ What it is:
 - the standard backup child login method
 - child signs in with family code first, then chooses their hero, then enters the hero PIN
 
-![Child fallback login screen for family code plus hero PIN](/img/help-guides/account-login-child-fallback-login.png)
+![Child fallback login screen for family code plus hero PIN](/img/help-guides/account-login-child-fallback-login.png?v=3)
 
-![Child fallback flow showing hero selection before PIN entry](/img/help-guides/account-login-child-hero-selection.png)
+![Child fallback flow showing hero selection before PIN entry](/img/help-guides/account-login-child-hero-selection.png?v=3)
 
 How the child uses it:
 
@@ -272,7 +272,7 @@ Important:
 
 - generated PINs should be recorded immediately because they are shown once after generation
 
-![Child Profile PIN controls for setting and generating PINs](/img/help-guides/account-login-child-profile-pins-card.png)
+![Child Profile PIN controls for setting and generating PINs](/img/help-guides/account-login-child-profile-pins-card.png?v=3)
 
 ### Copy a quick login link
 
@@ -292,7 +292,7 @@ Examples:
 - paste it into the child's Chromebook bookmarks
 - keep it on a shared kitchen tablet for after-school check-ins
 
-![Child Quick Login Links controls for copy and rotate actions](/img/help-guides/account-login-child-quick-links-card.png)
+![Child Quick Login Links controls for copy and rotate actions](/img/help-guides/account-login-child-quick-links-card.png?v=3)
 
 ### Approve a new device
 
@@ -310,7 +310,7 @@ Examples:
 - approve a second device used only on weekends
 - delay approval until you confirm the device belongs in your household
 
-![Pending Device Approvals panel for approving or rejecting devices](/img/help-guides/account-login-device-approvals-card.png)
+![Pending Device Approvals panel for approving or rejecting devices](/img/help-guides/account-login-device-approvals-card.png?v=3)
 
 ### Rotate a quick login link
 

@@ -8,7 +8,7 @@ description: Learn how manual and automatic achievements work, what every trigge
 
 Achievements are milestone awards that celebrate consistency, growth, and extra effort.
 
-![Achievements tab with Add Achievement action in Parent Dashboard](/img/help-guides/understanding-achievements-parent-tab.png)
+![Achievements tab with Add Achievement action in Parent Dashboard](/img/help-guides/understanding-achievements-parent-tab.png?v=3)
 
 Parents can:
 - create custom achievement templates

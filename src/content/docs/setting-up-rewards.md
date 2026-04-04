@@ -8,7 +8,7 @@ description: Build a clear, motivating rewards catalog with practical guidance o
 
 Rewards translate completed chores into motivation. This page explains each reward option and gives examples you can adapt.
 
-![Rewards tab with Add Reward action in Parent Dashboard](/img/help-guides/setting-up-rewards-parent-tab.png)
+![Rewards tab with Add Reward action in Parent Dashboard](/img/help-guides/setting-up-rewards-parent-tab.png?v=3)
 
 ## Create a reward
 

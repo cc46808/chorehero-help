@@ -16,7 +16,7 @@ Open the live product at [app.chorehero.cloud/login](https://app.chorehero.cloud
 - finish the initial family setup flow
 - confirm your parent-facing dashboard loads correctly
 
-![Parent Dashboard overview in the app](/img/help-guides/getting-started-parent-dashboard-overview.png)
+![Parent Dashboard overview in the app](/img/help-guides/getting-started-parent-dashboard-overview.png?v=3)
 
 ## 2. Set up your household basics
 
