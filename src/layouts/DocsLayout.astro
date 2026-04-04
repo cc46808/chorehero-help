@@ -224,6 +224,20 @@ const sidebarItems = [
         <button type="button" class="doc-image-lightbox-nav doc-image-lightbox-prev" aria-label="Previous image" hidden>Previous</button>
         <div class="doc-image-lightbox-stage">
           <img class="doc-image-lightbox-media" alt="" />
+          <div class="doc-image-lightbox-inspect-bar" hidden>
+            <span class="doc-image-lightbox-inspect-hint">Move mouse to inspect</span>
+            <button
+              type="button"
+              class="doc-image-lightbox-inspect-toggle"
+              role="switch"
+              aria-checked="true"
+              aria-label="Disable zoom"
+            >
+              <span class="doc-image-lightbox-inspect-toggle-track" aria-hidden="true">
+                <span class="doc-image-lightbox-inspect-toggle-thumb"></span>
+              </span>
+            </button>
+          </div>
         </div>
         <button type="button" class="doc-image-lightbox-nav doc-image-lightbox-next" aria-label="Next image" hidden>Next</button>
       </div>
@@ -244,6 +258,9 @@ const sidebarItems = [
     const closeButton = dialog.querySelector('.doc-image-lightbox-close');
     const previousButton = dialog.querySelector('.doc-image-lightbox-prev');
     const nextButton = dialog.querySelector('.doc-image-lightbox-next');
+    const inspectBar = dialog.querySelector('.doc-image-lightbox-inspect-bar');
+    const inspectToggleButton = dialog.querySelector('.doc-image-lightbox-inspect-toggle');
+    const inspectHint = dialog.querySelector('.doc-image-lightbox-inspect-hint');
     const galleryFigures = Array.from(contentRoot.querySelectorAll('.doc-image-gallery'));
     const prefersHoverInspect = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
@@ -251,6 +268,9 @@ const sidebarItems = [
     let activeIndex = 0;
     let baseImageWidth = 0;
     let inspectLocked = false;
+    let inspectEnabled = prefersHoverInspect;
+    let inspectHoverTimer = 0;
+    let pendingInspectPoint = null;
 
     const closeDialog = () => {
       resetInspectState();
@@ -265,12 +285,55 @@ const sidebarItems = [
 
     const resetInspectState = () => {
       if (!(dialogStage instanceof HTMLElement) || !(dialogImage instanceof HTMLImageElement)) return;
+      if (inspectHoverTimer) {
+        window.clearTimeout(inspectHoverTimer);
+        inspectHoverTimer = 0;
+      }
+      pendingInspectPoint = null;
       inspectLocked = false;
       dialogStage.classList.remove('is-hover-zooming');
       dialogStage.classList.remove('is-inspect-locked');
       dialogStage.style.removeProperty('--inspect-x');
       dialogStage.style.removeProperty('--inspect-y');
       dialogImage.style.removeProperty('--inspect-scale');
+    };
+
+    const clearInspectHoverTimer = () => {
+      if (!inspectHoverTimer) return;
+      window.clearTimeout(inspectHoverTimer);
+      inspectHoverTimer = 0;
+    };
+
+    const updateInspectPoint = (x, y) => {
+      if (!(dialogStage instanceof HTMLElement)) return;
+      dialogStage.style.setProperty('--inspect-x', `${Math.max(0, Math.min(100, x))}%`);
+      dialogStage.style.setProperty('--inspect-y', `${Math.max(0, Math.min(100, y))}%`);
+    };
+
+    const activateInspect = () => {
+      if (!(dialogStage instanceof HTMLElement) || !pendingInspectPoint || !inspectEnabled) return;
+      updateInspectPoint(pendingInspectPoint.x, pendingInspectPoint.y);
+      dialogStage.classList.add('is-hover-zooming');
+    };
+
+    const syncInspectUi = () => {
+      if (!(dialogStage instanceof HTMLElement)) return;
+
+      const canInspect = prefersHoverInspect && inspectEnabled;
+      dialogStage.classList.toggle('is-inspectable', canInspect);
+
+      if (inspectBar instanceof HTMLElement) {
+        inspectBar.hidden = !prefersHoverInspect;
+      }
+
+      if (inspectToggleButton instanceof HTMLButtonElement) {
+        inspectToggleButton.setAttribute('aria-checked', String(canInspect));
+        inspectToggleButton.setAttribute('aria-label', canInspect ? 'Disable zoom' : 'Enable zoom');
+      }
+
+      if (inspectHint instanceof HTMLElement) {
+        inspectHint.textContent = canInspect ? 'Move mouse to inspect' : 'Zoom disabled';
+      }
     };
 
     const syncLightboxLayout = () => {
@@ -288,9 +351,17 @@ const sidebarItems = [
 
       const renderedWidth = baseImageWidth > 0 ? Math.ceil(baseImageWidth) : 0;
       if (renderedWidth > 0) {
-        dialogFrame.style.width = `${renderedWidth}px`;
-        dialogStage.style.width = `${renderedWidth}px`;
-        dialogFooter.style.width = `${renderedWidth}px`;
+        let lightboxWidth = renderedWidth;
+
+        if (isPortrait) {
+          const viewportLimit = Math.floor(window.innerWidth * 0.86);
+          const portraitMinWidth = 420;
+          lightboxWidth = Math.min(viewportLimit, Math.max(renderedWidth, portraitMinWidth));
+        }
+
+        dialogFrame.style.width = `${lightboxWidth}px`;
+        dialogStage.style.width = `${lightboxWidth}px`;
+        dialogFooter.style.width = `${lightboxWidth}px`;
       } else {
         dialogFrame.style.width = '';
         dialogStage.style.width = '';
@@ -299,7 +370,7 @@ const sidebarItems = [
 
       const inspectScale = isPortrait ? 1.85 : 2.2;
       dialogImage.style.setProperty('--inspect-scale', String(inspectScale));
-      dialogStage.classList.toggle('is-inspectable', prefersHoverInspect);
+      syncInspectUi();
     };
 
     const measureBaseImage = () => {
@@ -401,6 +472,7 @@ const sidebarItems = [
     dialogStage?.addEventListener('pointermove', event => {
       if (
         !prefersHoverInspect ||
+        !inspectEnabled ||
         !(event instanceof PointerEvent) ||
         !(dialogStage instanceof HTMLElement)
       ) {
@@ -410,18 +482,38 @@ const sidebarItems = [
       if (!rect.width || !rect.height) return;
       const x = ((event.clientX - rect.left) / rect.width) * 100;
       const y = ((event.clientY - rect.top) / rect.height) * 100;
-      dialogStage.style.setProperty('--inspect-x', `${Math.max(0, Math.min(100, x))}%`);
-      dialogStage.style.setProperty('--inspect-y', `${Math.max(0, Math.min(100, y))}%`);
-      dialogStage.classList.add('is-hover-zooming');
+      pendingInspectPoint = { x, y };
+
+      if (inspectLocked) {
+        updateInspectPoint(x, y);
+        return;
+      }
+
+      if (!dialogStage.classList.contains('is-hover-zooming')) {
+        clearInspectHoverTimer();
+        inspectHoverTimer = window.setTimeout(() => {
+          inspectHoverTimer = 0;
+          activateInspect();
+        }, 180);
+        return;
+      }
+
+      updateInspectPoint(x, y);
     });
     dialogStage?.addEventListener('pointerleave', () => {
       if (!inspectLocked) resetInspectState();
+    });
+    inspectBar?.addEventListener('pointerenter', () => {
+      if (!inspectLocked) {
+        clearInspectHoverTimer();
+      }
     });
     dialogStage?.addEventListener('click', event => {
       if (
         !(event instanceof MouseEvent) ||
         !(dialogStage instanceof HTMLElement) ||
-        !prefersHoverInspect
+        !prefersHoverInspect ||
+        !inspectEnabled
       ) {
         return;
       }
@@ -438,11 +530,21 @@ const sidebarItems = [
       if (!rect.width || !rect.height) return;
       const x = ((event.clientX - rect.left) / rect.width) * 100;
       const y = ((event.clientY - rect.top) / rect.height) * 100;
-      dialogStage.style.setProperty('--inspect-x', `${Math.max(0, Math.min(100, x))}%`);
-      dialogStage.style.setProperty('--inspect-y', `${Math.max(0, Math.min(100, y))}%`);
+      pendingInspectPoint = { x, y };
+      updateInspectPoint(x, y);
+      clearInspectHoverTimer();
       dialogStage.classList.add('is-hover-zooming');
       dialogStage.classList.add('is-inspect-locked');
       inspectLocked = true;
+    });
+    inspectToggleButton?.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      inspectEnabled = !inspectEnabled;
+      if (!inspectEnabled) {
+        resetInspectState();
+      }
+      syncInspectUi();
     });
 
     dialog.addEventListener('click', event => {
@@ -495,6 +597,9 @@ const sidebarItems = [
         }
       });
     });
+
+    syncInspectUi();
+    window.addEventListener('resize', syncLightboxLayout);
   })();
 </script>
 
@@ -568,6 +673,11 @@ const sidebarItems = [
     background: #f8fafc;
     box-shadow: 0 26px 72px rgba(2, 6, 23, 0.45);
     overflow: visible;
+    scrollbar-width: none;
+  }
+
+  :global(dialog.doc-image-lightbox::-webkit-scrollbar) {
+    display: none;
   }
 
   :global(dialog.doc-image-lightbox::backdrop) {
@@ -603,7 +713,12 @@ const sidebarItems = [
 
   :global(.doc-image-lightbox-stage) {
     position: relative;
-    overflow: auto;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     width: fit-content;
     margin: 0 auto;
     max-width: 94vw;
@@ -612,16 +727,22 @@ const sidebarItems = [
     cursor: default;
   }
 
+  :global(.doc-image-lightbox-stage::-webkit-scrollbar) {
+    display: none;
+  }
+
   :global(.doc-image-lightbox-media) {
     display: block;
     max-width: 100%;
     max-height: min(82vh, 920px);
     width: auto;
-    margin: 0;
+    margin: 0 auto;
     object-fit: contain;
     border-radius: 14px 14px 0 0;
+    transform: scale(1);
     transform-origin: var(--inspect-x, 50%) var(--inspect-y, 50%);
-    transition: transform 140ms ease;
+    transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
   }
 
   :global(.doc-image-lightbox-stage.is-inspectable) {
@@ -636,25 +757,86 @@ const sidebarItems = [
     transform: scale(var(--inspect-scale, 2.2));
   }
 
-  :global(.doc-image-lightbox-stage.is-inspectable::after) {
-    content: 'Move mouse to inspect';
+  :global(.doc-image-lightbox-inspect-bar) {
     position: absolute;
     left: 50%;
     bottom: 16px;
     transform: translateX(-50%);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    max-width: calc(100% - 2rem);
+    padding: 0.34rem 0.38rem 0.34rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 999px;
     background: rgba(15, 23, 42, 0.78);
     color: #f8fafc;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    padding: 0.38rem 0.72rem;
-    pointer-events: none;
     opacity: 0.9;
     transition: opacity 140ms ease;
   }
 
-  :global(.doc-image-lightbox-stage.is-hover-zooming::after) {
+  :global(.doc-image-lightbox-inspect-hint) {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  :global(.doc-image-lightbox-inspect-toggle) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    min-height: 2rem;
+    padding: 0.18rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(248, 250, 252, 0.14);
+    cursor: pointer;
+    transition: background-color 140ms ease, border-color 140ms ease, opacity 140ms ease;
+  }
+
+  :global(.doc-image-lightbox-inspect-toggle:hover) {
+    background: rgba(248, 250, 252, 0.22);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+
+  :global(.doc-image-lightbox-inspect-toggle-track) {
+    position: relative;
+    width: 2.25rem;
+    height: 1.25rem;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.55);
+    transition: background-color 180ms ease;
+  }
+
+  :global(.doc-image-lightbox-inspect-toggle-thumb) {
+    position: absolute;
+    top: 0.125rem;
+    left: 0.125rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    background: #f8fafc;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+    transition: transform 180ms ease;
+  }
+
+  :global(.doc-image-lightbox-inspect-toggle[aria-checked='true'] .doc-image-lightbox-inspect-toggle-track) {
+    background: rgba(96, 165, 250, 0.9);
+  }
+
+  :global(.doc-image-lightbox-inspect-toggle[aria-checked='true'] .doc-image-lightbox-inspect-toggle-thumb) {
+    transform: translateX(1rem);
+  }
+
+  :global(.doc-image-lightbox-inspect-toggle[aria-checked='false']) {
+    background: rgba(248, 250, 252, 0.08);
+    opacity: 0.9;
+  }
+
+  :global(.doc-image-lightbox-stage.is-hover-zooming .doc-image-lightbox-inspect-bar) {
     opacity: 0;
   }
 
@@ -749,7 +931,7 @@ const sidebarItems = [
       white-space: normal;
     }
 
-    :global(.doc-image-lightbox-stage.is-inspectable::after) {
+    :global(.doc-image-lightbox-inspect-bar) {
       display: none;
     }
   }

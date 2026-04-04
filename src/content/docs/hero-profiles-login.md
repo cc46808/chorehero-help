@@ -181,12 +181,11 @@ What it is:
 - the primary child login method when quick login is available on your plan
 - designed for faster repeat access on trusted devices
 
-<figure class="doc-image-gallery">
-  <img src="/img/help-guides/account-login-family-access-settings.png?v=3" alt="Parent Family Access settings with child quick login controls" />
-  <a href="/img/help-guides/account-login-family-access-settings.png?v=3" data-doc-gallery-item data-alt="Parent Family Access settings with child quick login controls" hidden></a>
-  <a href="/img/help-guides/account-login-quick-link-approval.png?v=4" data-doc-gallery-item data-alt="Quick Hero Login approval screen when a new device needs parent PIN approval" hidden></a>
-  <a href="/img/help-guides/account-login-quick-link-trusted-pin.png?v=4" data-doc-gallery-item data-alt="Quick Hero Login trusted state with hero PIN entry" hidden></a>
-</figure>
+```gallery
+![Parent Family Access settings with child quick login controls](/img/help-guides/account-login-family-access-settings.png?v=3)
+![Quick Hero Login approval screen when a new device needs parent PIN approval](/img/help-guides/account-login-quick-link-approval.png?v=4)
+![Quick Hero Login trusted state with hero PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png?v=4)
+```
 
 How the child uses it:
 
@@ -214,11 +213,10 @@ What it is:
 - the standard backup child login method
 - child signs in with family code first, then chooses their hero, then enters the hero PIN
 
-<figure class="doc-image-gallery">
-  <img src="/img/help-guides/account-login-child-fallback-login.png?v=4" alt="Child fallback login screen for family code plus hero PIN" />
-  <a href="/img/help-guides/account-login-child-fallback-login.png?v=4" data-doc-gallery-item data-alt="Child fallback login screen for family code plus hero PIN" hidden></a>
-  <a href="/img/help-guides/account-login-child-hero-selection.png?v=4" data-doc-gallery-item data-alt="Child fallback flow showing hero selection before PIN entry" hidden></a>
-</figure>
+```gallery
+![Child fallback login screen for family code plus hero PIN](/img/help-guides/account-login-child-fallback-login.png?v=4)
+![Child fallback flow showing hero selection before PIN entry](/img/help-guides/account-login-child-hero-selection.png?v=4)
+```
 
 How the child uses it:
 

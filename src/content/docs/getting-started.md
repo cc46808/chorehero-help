@@ -40,11 +40,10 @@ For the smoothest onboarding, start simple:
 - add a few rewards children can recognize immediately
 - decide whether chores need parent approval or proof before they count as done
 
-<figure class="doc-image-gallery">
-  <img src="/img/help-guides/creating-chores-step-1-basics.png?v=1" alt="Create chore dialog showing the basics step in Parent Dashboard" />
-  <a href="/img/help-guides/creating-chores-step-1-basics.png?v=1" data-doc-gallery-item data-alt="Create chore dialog showing the basics step in Parent Dashboard" hidden></a>
-  <a href="/img/help-guides/setting-up-rewards-create-reward-dialog.png?v=1" data-doc-gallery-item data-alt="Create reward dialog showing reward fields in Parent Dashboard" hidden></a>
-</figure>
+```gallery
+![Create chore dialog showing the basics step in Parent Dashboard](/img/help-guides/creating-chores-step-1-basics.png?v=1)
+![Create reward dialog showing reward fields in Parent Dashboard](/img/help-guides/setting-up-rewards-create-reward-dialog.png?v=1)
+```
 
 See [Chores and rewards basics](/docs/chores-rewards-basics) for the product workflow details.
 For full field-level setup, use:
