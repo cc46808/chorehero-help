@@ -86,6 +86,11 @@ Generated image output:
 
 - `help/public/img/help-guides/`
 
+Separate archive source library:
+
+- `docs/screenshot-archive/app/`
+- `npm run screenshots:archive:app`
+
 CI automation:
 
 - `.github/workflows/help-screenshots.yml`
