@@ -12,6 +12,8 @@ Chore creation in ChoreHero uses a 3-step wizard. This page explains what every 
 
 ## Step 1: Basics
 
+![Create chore dialog showing the basics step in Parent Dashboard](/img/help-guides/creating-chores-step-1-basics.png?v=1)
+
 ### Chore Name
 
 What it means:
@@ -44,6 +46,8 @@ Examples:
 - "Take photo after done if needed"
 
 ## Step 2: Visual and scoring options
+
+![Create chore dialog showing visual and scoring options in Parent Dashboard](/img/help-guides/creating-chores-step-2-visual-scoring.png?v=1)
 
 ### Category
 
@@ -114,6 +118,8 @@ Examples:
 - Video for short demonstration chores (pet feeding process)
 
 ## Step 3: Assignment and schedule
+
+![Create chore dialog showing assignment and schedule options in Parent Dashboard](/img/help-guides/creating-chores-step-3-assignment-schedule.png?v=1)
 
 ### Assign to
 

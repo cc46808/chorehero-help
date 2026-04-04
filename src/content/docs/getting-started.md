@@ -27,6 +27,8 @@ After sign-in, make sure you can:
 - open **Settings > Account** for account and billing controls
 - confirm your household theme and general settings look right
 
+![Manage Heroes tab with hero profile controls](/img/help-guides/managing-heroes-parent-tab.png?v=3)
+
 For option-by-option hero setup guidance, see [Managing heroes](/docs/managing-heroes).
 
 ## 3. Add your first chores and rewards
@@ -37,6 +39,12 @@ For the smoothest onboarding, start simple:
 - assign clear expectations for each chore
 - add a few rewards children can recognize immediately
 - decide whether chores need parent approval or proof before they count as done
+
+<figure class="doc-image-gallery">
+  <img src="/img/help-guides/creating-chores-step-1-basics.png?v=1" alt="Create chore dialog showing the basics step in Parent Dashboard" />
+  <a href="/img/help-guides/creating-chores-step-1-basics.png?v=1" data-doc-gallery-item data-alt="Create chore dialog showing the basics step in Parent Dashboard" hidden></a>
+  <a href="/img/help-guides/setting-up-rewards-create-reward-dialog.png?v=1" data-doc-gallery-item data-alt="Create reward dialog showing reward fields in Parent Dashboard" hidden></a>
+</figure>
 
 See [Chores and rewards basics](/docs/chores-rewards-basics) for the product workflow details.
 For full field-level setup, use:
@@ -53,6 +61,8 @@ Child access can vary by household configuration and plan.
 - some use parent-managed quick-login or trusted-device flows
 - some advanced access paths depend on your active plan and current household settings
 
+![Family Access settings showing quick login links and fallback code](/img/help-guides/account-login-family-access-settings.png?v=3)
+
 See [Account, login, and onboarding](/docs/account-login-onboarding) for the supported paths.
 
 ## 5. Know what plan-dependent features look like
@@ -67,6 +77,8 @@ Examples of plan-dependent capabilities include:
 - push notifications
 - announcements
 - integrations
+
+![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=3)
 
 See [Billing and subscriptions](/docs/billing-subscriptions) for the current support-level overview.
 

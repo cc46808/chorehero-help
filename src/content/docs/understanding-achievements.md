@@ -22,6 +22,8 @@ Children can:
 
 ## Achievement setup options
 
+![Create achievement dialog showing achievement template fields in Parent Dashboard](/img/help-guides/understanding-achievements-create-template-dialog.png?v=1)
+
 ### Achievement Name
 
 What it means:
@@ -97,6 +99,8 @@ Examples:
 ## Auto-award trigger types
 
 Use these when Award Type is set to Auto.
+
+![Auto-award review dialog showing trigger and milestone settings in Parent Dashboard](/img/help-guides/understanding-achievements-auto-award-review-dialog.png?v=1)
 
 ### Streak Days
 
@@ -205,6 +209,8 @@ For manual achievements:
 2. Select **Award Manually**.
 3. Choose a hero.
 4. Confirm the award.
+
+![Manual achievement award dialog showing hero selection in Parent Dashboard](/img/help-guides/understanding-achievements-manual-award-dialog.png?v=1)
 
 Use manual awards for moments metrics cannot measure well.
 

@@ -18,6 +18,8 @@ Rewards translate completed chores into motivation. This page explains each rewa
 4. Configure fields below.
 5. Save.
 
+![Create reward dialog showing reward fields in Parent Dashboard](/img/help-guides/setting-up-rewards-create-reward-dialog.png?v=1)
+
 ## Reward options explained
 
 ### Reward Name

@@ -15,12 +15,16 @@ Use the checks below before escalating a support issue.
 - refresh the session or sign out and sign back in
 - make sure the household is not opening an old saved tab
 
+![Parent sign-in screen in the app](/img/help-guides/account-login-parent-signin.png?v=3)
+
 ## Child quick-login or child access stopped working
 
 - confirm the household is using the intended child access path
 - check whether a login link was rotated, revoked, or replaced
 - review whether a trusted device was removed
 - confirm a recent plan change did not disable quick login or device approvals
+
+![Family Access settings showing quick login links and fallback code](/img/help-guides/account-login-family-access-settings.png?v=3)
 
 ## Chores are missing or look out of date
 
@@ -51,6 +55,8 @@ This is especially important when the issue involves:
 - device approvals
 - integrations
 
+![Billing section in Parent Dashboard account tab](/img/help-guides/billing-account-tab.png?v=3)
+
 ## Push notifications do not work
 
 Push depends on browser and device support as well as household configuration.
@@ -73,3 +79,5 @@ Move to [Contact and support](/docs/contact-support) and include:
 - what actually happened
 - whether the issue affects parents, children, or both
 - whether the problem started after a billing, login, or settings change
+
+![Parent Dashboard support ticket intake flow in the app](/img/help-guides/contact-support-ticket-flow.png?v=3)

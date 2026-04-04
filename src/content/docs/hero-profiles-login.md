@@ -19,6 +19,8 @@ In ChoreHero, each child profile is a hero. Parents create and manage heroes fro
 6. Choose **Set PIN** or **Generate PIN**.
 7. Save.
 
+![Add Hero dialog showing profile setup fields in Parent Dashboard](/img/help-guides/managing-heroes-create-hero-dialog.png?v=1)
+
 ## Hero options explained
 
 ### Name
@@ -114,6 +116,8 @@ Examples:
 
 ## PIN and login security options
 
+![Add Hero dialog showing the PIN setup step in Parent Dashboard](/img/help-guides/managing-heroes-pin-step-dialog.png?v=1)
+
 ### Set PIN
 
 What it means:
@@ -177,11 +181,12 @@ What it is:
 - the primary child login method when quick login is available on your plan
 - designed for faster repeat access on trusted devices
 
-![Parent Family Access settings with child quick login controls](/img/help-guides/account-login-family-access-settings.png?v=3)
-
-![Quick Hero Login approval screen when a new device needs parent PIN approval](/img/help-guides/account-login-quick-link-approval.png?v=3)
-
-![Quick Hero Login trusted state with hero PIN entry](/img/help-guides/account-login-quick-link-trusted-pin.png?v=3)
+<figure class="doc-image-gallery">
+  <img src="/img/help-guides/account-login-family-access-settings.png?v=3" alt="Parent Family Access settings with child quick login controls" />
+  <a href="/img/help-guides/account-login-family-access-settings.png?v=3" data-doc-gallery-item data-alt="Parent Family Access settings with child quick login controls" hidden></a>
+  <a href="/img/help-guides/account-login-quick-link-approval.png?v=3" data-doc-gallery-item data-alt="Quick Hero Login approval screen when a new device needs parent PIN approval" hidden></a>
+  <a href="/img/help-guides/account-login-quick-link-trusted-pin.png?v=3" data-doc-gallery-item data-alt="Quick Hero Login trusted state with hero PIN entry" hidden></a>
+</figure>
 
 How the child uses it:
 
@@ -209,9 +214,11 @@ What it is:
 - the standard backup child login method
 - child signs in with family code first, then chooses their hero, then enters the hero PIN
 
-![Child fallback login screen for family code plus hero PIN](/img/help-guides/account-login-child-fallback-login.png?v=3)
-
-![Child fallback flow showing hero selection before PIN entry](/img/help-guides/account-login-child-hero-selection.png?v=3)
+<figure class="doc-image-gallery">
+  <img src="/img/help-guides/account-login-child-fallback-login.png?v=3" alt="Child fallback login screen for family code plus hero PIN" />
+  <a href="/img/help-guides/account-login-child-fallback-login.png?v=3" data-doc-gallery-item data-alt="Child fallback login screen for family code plus hero PIN" hidden></a>
+  <a href="/img/help-guides/account-login-child-hero-selection.png?v=3" data-doc-gallery-item data-alt="Child fallback flow showing hero selection before PIN entry" hidden></a>
+</figure>
 
 How the child uses it:
 
@@ -291,6 +298,8 @@ Examples:
 - save it as a home screen shortcut on a family iPad
 - paste it into the child's Chromebook bookmarks
 - keep it on a shared kitchen tablet for after-school check-ins
+
+![Quick login QR and link sharing dialog in Parent Dashboard](/img/help-guides/managing-heroes-quick-login-qr-dialog.png?v=1)
 
 ![Child Quick Login Links controls for copy and rotate actions](/img/help-guides/account-login-child-quick-links-card.png?v=3)
 

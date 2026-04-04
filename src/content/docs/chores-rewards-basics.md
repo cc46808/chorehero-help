@@ -33,6 +33,8 @@ Some chores can be approved directly, while others may require submission or pro
 
 Proof behavior can depend on plan access and current subscription state. If a proof option is missing or unavailable, review [Billing and subscriptions](/docs/billing-subscriptions).
 
+![Child chore proof dialog showing a submission-ready chore](/img/help-guides/chores-rewards-basics-proof-submission-dialog.png?v=1)
+
 ## Rewards
 
 Rewards help make progress visible and reinforce follow-through.
@@ -43,12 +45,16 @@ Parents usually manage:
 - when a reward can be claimed
 - whether a reward still fits the current household routine
 
+![Child rewards store showing available rewards to claim](/img/help-guides/chores-rewards-basics-rewards-store-dialog.png?v=1)
+
 ## Dashboard expectations
 
 Parents and children do not use the same surface in the same way.
 
 - parent views focus on planning, approvals, settings, and oversight
 - child views focus on what is due, what is done, and what can be earned next
+
+![Child Dashboard chores tab showing the day-to-day task list](/img/help-guides/chores-rewards-basics-child-chores-tab.png?v=1)
 
 ## Good setup habits
 
