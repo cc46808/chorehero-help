@@ -365,6 +365,26 @@ function buildCookiePolicyDescription(cookiePolicyUrl: string) {
   return `You can update your optional diagnostics choices at any time. Read our <a href="${cookiePolicyUrl}">Privacy Policy</a> for more detail.`;
 }
 
+function registerConsentModalCloseBehavior(modal: HTMLElement) {
+  if (modal.dataset.closeBehaviorBound === 'true') return;
+
+  const closeButton = modal.querySelector<HTMLButtonElement>('.cm__btn--close');
+  if (!closeButton) return;
+
+  closeButton.addEventListener(
+    'click',
+    (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      CookieConsent.acceptCategory('all');
+      CookieConsent.hide();
+    },
+    true
+  );
+
+  modal.dataset.closeBehaviorBound = 'true';
+}
+
 function buildCookieConfig(config: ConsentConfig) {
   return {
     name: CONSENT_COOKIE_NAME,
@@ -409,6 +429,7 @@ function buildCookieConfig(config: ConsentConfig) {
               'We use necessary cookies to keep the site working. Optional diagnostics help us identify public help-center failures. Search stays available regardless of this choice.',
             acceptAllBtn: 'Accept all',
             showPreferencesBtn: 'Review settings',
+            closeIconLabel: 'Close',
             footer: buildCookiePolicyDescription(config.cookiePolicyUrl),
           },
           preferencesModal: {
@@ -451,6 +472,9 @@ function buildCookieConfig(config: ConsentConfig) {
     },
     onModalReady: ({ modalName, modal }: { modalName: 'consentModal' | 'preferencesModal'; modal: HTMLElement }) => {
       modal.dataset.testid = modalName === 'consentModal' ? 'cookie-consent-modal' : 'cookie-preferences-modal';
+      if (modalName === 'consentModal') {
+        registerConsentModalCloseBehavior(modal);
+      }
     },
     onFirstConsent: () => {
       syncTelemetry(config);
