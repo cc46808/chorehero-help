@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import HybridDocSearch from '../components/HybridDocSearch';
+import consentBootstrapUrl from '../lib/consent/publicConsent.ts?url';
 
 interface Props {
   title: string;
@@ -55,6 +56,13 @@ const sentryDsn = import.meta.env.PUBLIC_SENTRY_DSN ?? '';
 const sentryEnvironment = import.meta.env.PUBLIC_SENTRY_ENVIRONMENT ?? 'production';
 const sentryTracesSampleRate = Number(import.meta.env.PUBLIC_SENTRY_TRACES_SAMPLE_RATE ?? '0.1');
 const enableSentry = sentryEnabled && sentryDsn.length > 0;
+const consentConfig = {
+  cookiePolicyUrl: 'https://app.chorehero.cloud/privacy-policy',
+  sentryEnabled: enableSentry,
+  sentryDsn,
+  sentryEnvironment,
+  sentryTracesSampleRate,
+};
 ---
 
 <!doctype html>
@@ -76,237 +84,10 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
       rel="stylesheet"
     />
     <title>{fullTitle}</title>
-    {enableSentry && (
-      <script src="https://browser.sentry-cdn.com/10.22.0/bundle.min.js" crossorigin="anonymous"></script>
-    )}
-    {enableSentry && (
-      <script define:vars={{ sentryDsn, sentryEnvironment, sentryTracesSampleRate }}>
-        const ignoreSentryPatterns = [
-          /^CHOREHERO_(?:CONSOLE|RUNTIME)_ERROR_TEST_/i,
-          /Lock broken by another request with the 'steal' option\./i,
-        ];
-        const dynamicImportFailurePatterns = [
-          /Failed to fetch dynamically imported module/i,
-          /Importing a module script failed/i,
-          /error loading dynamically imported module/i,
-          /Unable to preload CSS/i,
-        ];
-        const dynamicImportReloadKey = '__chorehero_dynamic_import_reload__';
-        const dynamicImportReloadWindowMs = 15000;
-
-        const collectErrorTexts = (value, target = []) => {
-          if (!value) return target;
-
-          if (typeof value === 'string') {
-            const normalized = value.trim();
-            if (normalized) target.push(normalized);
-            return target;
-          }
-
-          if (value instanceof Error) {
-            collectErrorTexts(value.name, target);
-            collectErrorTexts(value.message, target);
-          }
-
-          if (Array.isArray(value)) {
-            value.forEach((entry) => collectErrorTexts(entry, target));
-            return target;
-          }
-
-          collectErrorTexts(value.message, target);
-          collectErrorTexts(value.name, target);
-          collectErrorTexts(value.type, target);
-          collectErrorTexts(value.reason, target);
-          collectErrorTexts(value.formatted, target);
-          collectErrorTexts(value.value, target);
-
-          if (Array.isArray(value.exception?.values)) {
-            value.exception.values.forEach((entry) => collectErrorTexts(entry, target));
-          }
-
-          if (value.logentry) {
-            collectErrorTexts(value.logentry, target);
-          }
-
-          return target;
-        };
-
-        const matchesPatterns = (value, patterns) =>
-          collectErrorTexts(value).some((text) => patterns.some((pattern) => pattern.test(text)));
-
-        const shouldIgnoreSentryValue = (value) => matchesPatterns(value, ignoreSentryPatterns);
-        const shouldIgnoreSentryEvent = (event, hint) =>
-          shouldIgnoreSentryValue(event) ||
-          shouldIgnoreSentryValue(hint?.originalException) ||
-          shouldIgnoreSentryValue(hint?.syntheticException);
-
-        const recoverFromDynamicImportFailure = (value) => {
-          if (!matchesPatterns(value, dynamicImportFailurePatterns)) return false;
-
-          try {
-            const now = Date.now();
-            const currentHref = window.location.href;
-            const previousRaw = window.sessionStorage.getItem(dynamicImportReloadKey);
-            const previous = previousRaw ? JSON.parse(previousRaw) : null;
-            const retriedRecently =
-              previous?.href === currentHref &&
-              now - Number(previous?.at || 0) < dynamicImportReloadWindowMs;
-
-            if (retriedRecently) return false;
-
-            window.sessionStorage.setItem(
-              dynamicImportReloadKey,
-              JSON.stringify({ href: currentHref, at: now })
-            );
-            window.location.reload();
-            return true;
-          } catch {
-            return false;
-          }
-        };
-
-        const consoleIntegration =
-          typeof window.Sentry?.captureConsoleIntegration === 'function'
-            ? window.Sentry.captureConsoleIntegration({
-                levels: ['error', 'warn', 'assert'],
-              })
-            : typeof window.Sentry?.Integrations?.CaptureConsole === 'function'
-              ? new window.Sentry.Integrations.CaptureConsole({
-                  levels: ['error', 'warn', 'assert'],
-                })
-              : null;
-
-        window.Sentry?.init({
-          dsn: sentryDsn,
-          environment: sentryEnvironment,
-          integrations: consoleIntegration ? [consoleIntegration] : [],
-          tracesSampleRate: Number.isFinite(sentryTracesSampleRate) ? sentryTracesSampleRate : 0.1,
-          ignoreErrors: ignoreSentryPatterns,
-          beforeSend(event, hint) {
-            if (shouldIgnoreSentryEvent(event, hint)) {
-              return null;
-            }
-            return event;
-          },
-        });
-
-        window.addEventListener('vite:preloadError', (event) => {
-          const payload = event?.payload ?? event?.detail ?? event?.error ?? null;
-          if (recoverFromDynamicImportFailure(payload)) {
-            event.preventDefault?.();
-          }
-        });
-
-        if (!consoleIntegration && window.Sentry) {
-          const originalConsoleError = console.error.bind(console);
-          const originalConsoleWarn = console.warn.bind(console);
-          const originalConsoleAssert = console.assert.bind(console);
-          let isCapturing = false;
-
-          const normalizeArg = (value) => {
-            if (value instanceof Error) return value.message;
-            if (typeof value === 'string') return value;
-            try {
-              return JSON.stringify(value);
-            } catch {
-              return String(value);
-            }
-          };
-
-          const captureConsoleEvent = (level, args) => {
-            if (isCapturing) return;
-            if (shouldIgnoreSentryValue(args)) return;
-            isCapturing = true;
-            try {
-              const errorArg = args.find((arg) => arg instanceof Error);
-              const normalizedArgs = args.map(normalizeArg).join(' ');
-
-              if (errorArg) {
-                window.Sentry.captureException(errorArg, {
-                  level,
-                  extra: { console_args: normalizedArgs },
-                });
-              } else {
-                window.Sentry.captureMessage(normalizedArgs || 'Console message', {
-                  level,
-                });
-              }
-            } finally {
-              isCapturing = false;
-            }
-          };
-
-          console.error = (...args) => {
-            captureConsoleEvent('error', args);
-            originalConsoleError(...args);
-          };
-
-          console.warn = (...args) => {
-            captureConsoleEvent('warning', args);
-            originalConsoleWarn(...args);
-          };
-
-          console.assert = (condition, ...args) => {
-            if (!condition) {
-              captureConsoleEvent('error', ['Assertion failed', ...args]);
-            }
-            originalConsoleAssert(condition, ...args);
-          };
-        }
-
-        if (window.Sentry && !window.__choreHeroSentryGlobalHandlersInstalled) {
-          window.__choreHeroSentryGlobalHandlersInstalled = true;
-
-          window.addEventListener('error', (event) => {
-            const errorValue = event?.error || event?.message || 'Uncaught browser error';
-            if (recoverFromDynamicImportFailure(errorValue) || shouldIgnoreSentryValue(errorValue)) {
-              return;
-            }
-
-            const error = event?.error instanceof Error
-              ? event.error
-              : new Error(event?.message || 'Uncaught browser error');
-
-            window.Sentry.captureException(error, {
-              level: 'error',
-              extra: {
-                source: 'window.error',
-                filename: event?.filename || null,
-                lineno: event?.lineno || null,
-                colno: event?.colno || null,
-              },
-            });
-          });
-
-          window.addEventListener('unhandledrejection', (event) => {
-            const reason = event?.reason;
-            if (recoverFromDynamicImportFailure(reason) || shouldIgnoreSentryValue(reason)) {
-              return;
-            }
-
-            const error = reason instanceof Error
-              ? reason
-              : new Error(typeof reason === 'string' ? reason : 'Unhandled promise rejection');
-
-            window.Sentry.captureException(error, {
-              level: 'error',
-              extra: {
-                source: 'window.unhandledrejection',
-                reason: reason && !(reason instanceof Error)
-                  ? (() => {
-                      try {
-                        return JSON.stringify(reason);
-                      } catch {
-                        return String(reason);
-                      }
-                    })()
-                  : null,
-              },
-            });
-          });
-        }
-      </script>
-    )}
+    <script type="module" define:vars={{ consentConfig, consentBootstrapUrl }}>
+      const { initPublicConsent } = await import(consentBootstrapUrl);
+      void initPublicConsent(consentConfig);
+    </script>
   </head>
   <body class="font-body text-ink antialiased min-h-screen">
     <a
@@ -372,6 +153,13 @@ const enableSentry = sentryEnabled && sentryDsn.length > 0;
                     </a>
                   </li>
                 ))}
+                {col.heading === 'Legal' && (
+                  <li>
+                    <a href="#" data-cookie-settings class="text-[0.9rem] text-white/60 hover:text-white transition-colors">
+                      Cookie settings
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           ))}
