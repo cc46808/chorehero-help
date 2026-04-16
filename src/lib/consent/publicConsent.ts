@@ -32,7 +32,7 @@ declare global {
 
 const CONSENT_COOKIE_NAME = 'ch_cookie_consent';
 const REGION_POLICY_COOKIE_NAME = 'ch_region_policy';
-const CONSENT_REVISION = 1;
+const CONSENT_REVISION = 2;
 const SENTRY_BROWSER_BUNDLE_URL = 'https://browser.sentry-cdn.com/10.22.0/bundle.min.js';
 const STRICT_REGION_POLICY = 'strict';
 const SHARED_COOKIE_DOMAIN = '.chorehero.cloud';
@@ -383,7 +383,7 @@ function buildCookieConfig(config: ConsentConfig) {
     guiOptions: {
       consentModal: {
         layout: 'box' as const,
-        position: 'bottom center' as const,
+        position: 'bottom right' as const,
         equalWeightButtons: true,
       },
       preferencesModal: {
@@ -408,14 +408,12 @@ function buildCookieConfig(config: ConsentConfig) {
             description:
               'We use necessary cookies to keep the site working. Optional diagnostics help us identify public help-center failures. Search stays available regardless of this choice.',
             acceptAllBtn: 'Accept all',
-            acceptNecessaryBtn: 'Reject all',
-            showPreferencesBtn: 'Choose settings',
+            showPreferencesBtn: 'Review settings',
             footer: buildCookiePolicyDescription(config.cookiePolicyUrl),
           },
           preferencesModal: {
             title: 'Cookie settings',
             acceptAllBtn: 'Accept all',
-            acceptNecessaryBtn: 'Reject all',
             savePreferencesBtn: 'Save settings',
             closeIconLabel: 'Close',
             sections: [

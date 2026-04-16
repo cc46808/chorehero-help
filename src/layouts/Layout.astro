@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import HybridDocSearch from '../components/HybridDocSearch';
-import consentBootstrapUrl from '../lib/consent/publicConsent.ts?url';
 
 interface Props {
   title: string;
@@ -84,9 +83,16 @@ const consentConfig = {
       rel="stylesheet"
     />
     <title>{fullTitle}</title>
-    <script type="module" define:vars={{ consentConfig, consentBootstrapUrl }}>
-      const { initPublicConsent } = await import(consentBootstrapUrl);
-      void initPublicConsent(consentConfig);
+    <script id="chorehero-consent-config" type="application/json" is:inline set:html={JSON.stringify(consentConfig)} />
+    <script>
+      import { initPublicConsent } from '../lib/consent/publicConsent';
+
+      const configElement = document.getElementById('chorehero-consent-config');
+      const consentConfig = configElement?.textContent ? JSON.parse(configElement.textContent) : null;
+
+      if (consentConfig) {
+        void initPublicConsent(consentConfig);
+      }
     </script>
   </head>
   <body class="font-body text-ink antialiased min-h-screen">
