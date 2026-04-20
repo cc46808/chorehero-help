@@ -63,6 +63,39 @@ function normalizeSampleRate(value: number) {
   return Number.isFinite(value) ? value : 0.1;
 }
 
+function normalizeRuntimeHostname(hostname = '') {
+  return String(hostname || '').trim().toLowerCase();
+}
+
+function getRuntimeHostname() {
+  return typeof window === 'undefined' ? '' : normalizeRuntimeHostname(window.location.hostname);
+}
+
+function isLocalRuntimeHost(hostname = getRuntimeHostname()) {
+  const normalized = normalizeRuntimeHostname(hostname);
+  return (
+    normalized === 'localhost' ||
+    normalized === '127.0.0.1' ||
+    normalized === '::1' ||
+    normalized === '[::1]'
+  );
+}
+
+function isPreviewRuntimeHost(hostname = getRuntimeHostname()) {
+  return normalizeRuntimeHostname(hostname).endsWith('.pages.dev');
+}
+
+export function resolveSentryEnvironmentForHost(hostname = getRuntimeHostname(), configuredEnvironment = 'development') {
+  const baseEnvironment = String(configuredEnvironment || 'development').trim() || 'development';
+  if (isLocalRuntimeHost(hostname)) {
+    return 'development';
+  }
+  if (isPreviewRuntimeHost(hostname) && baseEnvironment === 'production') {
+    return 'preview';
+  }
+  return baseEnvironment;
+}
+
 function loadScript(src: string) {
   const existing = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`);
   if (existing) {
@@ -146,6 +179,22 @@ function collectErrorTexts(value: unknown, target: string[] = []) {
     if (candidate.logentry) {
       collectErrorTexts(candidate.logentry, target);
     }
+
+    if (candidate.data) {
+      collectErrorTexts(candidate.data, target);
+    }
+
+    if (candidate.extra) {
+      collectErrorTexts(candidate.extra, target);
+    }
+
+    if (candidate.arguments) {
+      collectErrorTexts(candidate.arguments, target);
+    }
+
+    if (candidate.breadcrumbs) {
+      collectErrorTexts(candidate.breadcrumbs, target);
+    }
   }
 
   return target;
@@ -164,6 +213,7 @@ function ensureSentryRuntime(config: ConsentConfig) {
     const ignoreSentryPatterns = [
       /^CHOREHERO_(?:CONSOLE|RUNTIME)_ERROR_TEST_/i,
       /Lock broken by another request with the 'steal' option\./i,
+      /was not released within 5000ms/i,
     ];
     const dynamicImportFailurePatterns = [
       /Failed to fetch dynamically imported module/i,
@@ -179,6 +229,7 @@ function ensureSentryRuntime(config: ConsentConfig) {
       shouldIgnoreSentryValue(event) ||
       shouldIgnoreSentryValue(hint.originalException) ||
       shouldIgnoreSentryValue(hint.syntheticException);
+    const sentryEnvironment = resolveSentryEnvironmentForHost(getRuntimeHostname(), config.sentryEnvironment);
 
     const recoverFromDynamicImportFailure = (value: unknown) => {
       if (!matchesPatterns(value, dynamicImportFailurePatterns)) return false;
@@ -218,7 +269,7 @@ function ensureSentryRuntime(config: ConsentConfig) {
 
     window.Sentry?.init?.({
       dsn: config.sentryDsn,
-      environment: config.sentryEnvironment,
+      environment: sentryEnvironment,
       integrations: consoleIntegration ? [consoleIntegration] : [],
       tracesSampleRate: normalizeSampleRate(config.sentryTracesSampleRate),
       ignoreErrors: ignoreSentryPatterns,
