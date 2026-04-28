@@ -57,7 +57,7 @@ function resolveRegionPolicy(country: string | undefined) {
 }
 
 function buildSetCookieHeader(policy: string) {
-  return `${REGION_POLICY_COOKIE_NAME}=${policy}; Path=/; Max-Age=${REGION_POLICY_COOKIE_MAX_AGE}; SameSite=Lax; Secure`;
+  return `${REGION_POLICY_COOKIE_NAME}=${policy}; Path=/; Max-Age=${REGION_POLICY_COOKIE_MAX_AGE}; SameSite=Lax; Secure; HttpOnly`;
 }
 
 export const onRequest = async (context: { request: RequestWithCf; next: () => Promise<Response> }) => {
